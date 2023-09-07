@@ -1,0 +1,15 @@
+para enviar cambios a repositorio
+git add .
+git commit -m "mensaje de cambios"
+git push origin pruebas_silvia
+
+
+
+
+
+para traer cambios del repositorio
+git pull origin (nombre de la rama)
+ramas:
+ develop
+ pruebas_silvia
+ 
