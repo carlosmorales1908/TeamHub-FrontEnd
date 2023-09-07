@@ -1,0 +1,33 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto Slab', serif;
+    background-image: linear-gradient(
+    135deg,
+    rgba(47, 145, 224, 0.91),
+    rgba(7, 31, 51, 0.97) 79%
+  );
+  background-image: linear-gradient(
+    131deg,
+    rgba(28, 118, 173, 0.92),
+    rgba(83, 184, 152, 1)
+  );
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  input,
+  button,
+  textarea {
+    font: inherit
+  }

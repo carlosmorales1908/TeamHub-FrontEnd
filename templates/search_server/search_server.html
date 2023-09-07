@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servidores</title>
+  <!-- ICONS -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <!--  -->
+  <link rel="stylesheet" href="search_server.css">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+  <div class="general-container">
+    <!-- MENU LATERAL -->
+    <div class="menu-lateral">
+      <!-- PARA MOSTRAR HERRAMIENTAS -->
+      <div class="tools">
+        <a href="#">
+          <span class="material-symbols-outlined mi-server">
+            account_circle
+          </span>
+        </a>
+        <a href="#" class="new-server">
+          <span class="material-symbols-outlined crear-server">
+            add_circle
+          </span>
+        </a>
+        <a href="#">
+          <span class="material-symbols-outlined explorar-server">
+            explore
+          </span>
+        </a>
+      </div>
+      <!-- PARA MOSTRAR USUARIO -->
+      <div class="user-card">
+        <div class="avatar">
+          <img src="../assets/avatar_prueba.jpg" alt="john">
+        </div>
+        <div class="user-name">John</div>
+      </div>
+    </div>
+
+    <!-- MENU GENERAL -->
+    <div class="servers-container">
+      <input type="text" class="search-bar" name="search-bar" id="search-bar" placeholder="Buscar Servidor...">
+      <div class="servers">
+        <a href="#" class="cinema-link">
+          <span class="material-symbols-outlined">
+            cinematic_blur
+          </span>
+          <span class="title-icon">Cine</span>
+        </a>
+        <a href="#" class="travel-link">
+          <span class="material-symbols-outlined">
+            connecting_airports
+          </span>
+          </span>
+          <span class="title-icon">Viajes</span>
+        </a>
+        <a href="#" class="literature-link">
+          <span class="material-symbols-outlined">
+            auto_stories
+          </span>
+          <span class="title-icon">Literatura</span>
+        </a>
+        <a href="#" class="health-link">
+          <span class="material-symbols-outlined">
+            cardiology
+          </span>
+          <span class="title-icon">Salud</span>
+        </a>
+        <a href="#" class="games-link">
+          <span class="material-symbols-outlined">
+            sports_esports
+          </span>
+          <span class="title-icon">Juegos</span>
+        </a>
+        <a href="#" class="sport-link">
+          <span class="material-symbols-outlined">
+            sports_soccer
+          </span>
+          <span class="title-icon">Deportes</span>
+        </a>
+        <a href="#" class="music-link">
+          <span class="material-symbols-outlined">
+            library_music
+          </span>
+          <span class="title-icon">Música</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- MODAL NUEVO SERVER -->
+    <dialog class="nuevo-modal">
+      <div class="modal-container">
+        <h3>Crear Nuevo Servidor</h3>
+        <form action="#">
+          <input type="text" name="text" id="text" placeholder="Nombre del servidor...">
+          <br>
+          <button type="submit" class="btn-form-ns">Crear</button>
+          <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
+        </form>
+      </div>
+    </dialog>
+
+  </div>
+  <script src="../js/servidores.js"></script>
+</body>
+
+</html>
