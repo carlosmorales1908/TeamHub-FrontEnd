@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style/user_profile.css">
+  <title>User Profile</title>
+</head>
+<body>
+  <div class="profile-container">
+    <!-- CABECERA -->
+    <div class="user-profile">
+      <figure>
+        <img class="user-avatar" src="../assets/images/avatar_prueba.jpg" alt="John">
+      </figure>
+      <div class="card-user-name"> JOHN SALCHICHON</div>
+    </div>
+    <!-- FORM -->
+    <form action="#" class="user-form">
+      <div class="input-info">
+        <span>
+          <label class="lbl-user-name" for="user-name">Nombre de usuario</label>
+        </span>
+          <input class="inp-user-name" type="text">
+        <button class="btn-user-name">Editar</button>
+      </div>
+      <div class="input-info">
+        <span>
+          <label class="lbl-name" for="name">Nombre</label>
+        </span>
+        <input class="inp-name" type="text">
+        <button class="btn-name">Editar</button>
+      </div>
+      <div class="input-info">
+        <span>
+          <label class="lbl-lname" for="lname">Apellido</label>
+        </span>
+        <input class="inp-lname" type="text">
+        <button class="btn-lname">Editar</button>
+      </div>
+      <div class="input-info">
+        <span>
+          <label class="lbl-email" for="email">Correo</label>
+        </span>
+        <input class="inp-email" type="email">
+        <button class="btn-email">Editar</button>
+      </div>
+      <div class="modify-profile">
+        <input type="submit" value="Guardar">
+        <input type="submit" value="Cancelar">
+      </div>
+      <div class="change-pass-container">
+        <a href="#" class="change-password">Cambiar contraseña</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- MODAL PASSWORD-->
+  <dialog class="nuevo-modal">
+    <div class="modal-container">
+      <h3>Cambiar contraseña</h3>
+      <form action="#" class="password-form">
+        <label for="actual-pass">Contraseña Actual</label>
+        <input type="password" name="actual-pass" id="actual-pass" >
+        <label for="new-pass">Nueva contraseña</label>
+        <input type="password" name="new-pass" id="new-pass" >
+        <label for="confirm-new-pass">Confirmar contraseña</label>
+        <input type="password" name="confirm-new-pass" id="confirm-new-pass" >
+        <div class="modify-pass">
+          <button type="submit" class="btn-form-ns">Confirmar</button>
+          <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="../js/user_profile.js"></script>
+</body>
+</html>

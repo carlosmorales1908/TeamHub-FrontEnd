@@ -1,0 +1,135 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* BARRA LATERAL */
+.side-bar {
+    height: 100vh;
+    width: clamp(150px, 100px, 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  
+.tools {
+    display: flex;
+    border: 1px solid rgb(83, 184, 152);
+    width: 100%;
+    height: 90%;
+    justify-content: center;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.tools ul{
+    list-style: none;
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-server,
+.create-server,
+.explore-server {
+    height: auto;
+    width: 80px;
+    color: red;
+    fill:blue;
+    
+}
+
+/* .my-server:hover,
+.create-server:hover,
+.explore-server:hover {
+    height: auto;
+    width: 85px;
+    color: rgb(135, 230, 200);
+} */
+.servers a:hover,
+.tools a div:hover {
+  fill: rgb(135, 230, 200) !important;
+}
+
+.user-card {
+    border: 1px solid rgba(83, 184, 152, 1);
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-card .avatar img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.user-card .user-name {
+    /* font-family: var(--FF); */
+    font-size: 1.5rem;
+    color: whitesmoke;
+}
+
+
+/* EN CASO DE USAR LOS SVG DIRECTAMENTE EN EL HTML */
+svg{
+    height: auto;
+    width: 80px;
+}
+
+/* CONTENIDO */
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* OPCION 1 */
+/* USAR TODO EL SVG EN EL HTML */
+svg {
+    width: 70px;
+    height: 70px;
+  }
+  svg:hover {
+    fill: red;
+  }
+
+/* OPCION 2 */
+/* BUSCAR EL URL DEL SVG EN DISTINTOS COLORES Y USARLO COMO BG */
+.icon {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+  }
+  .icon-bike {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/icon-bike-black.svg);
+  }
+  .icon-bike:hover,
+  .icon-bike:focus {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/icon-bike-red.svg);
+  }
+
+/* OPCION 3 CAMBIAR VALORES DE FOCUS TENIENDO URL */
+.icon-bike2 {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/icon-bike-black.svg);
+  }
+.icon-bike2:hover,
+.icon-bike2:focus {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+  }
+
+.icon5:hover{
+  filter: brightness(0) saturate(100%) invert(92%) sepia(20%) saturate(628%) hue-rotate(99deg) brightness(100%) contrast(95%);
+}
