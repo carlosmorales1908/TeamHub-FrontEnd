@@ -16,29 +16,36 @@
 <body>
   <div class="general-container">
     <!-- MENU LATERAL -->
-    <div class="menu-lateral">
+    <div class="side-bar">
       <!-- PARA MOSTRAR HERRAMIENTAS -->
-      <div class="tools">
-        <a href="#">
-          <span class="material-symbols-outlined mi-server">
-            account_circle
-          </span>
-        </a>
-        <a href="#" class="new-server">
-          <span class="material-symbols-outlined crear-server">
-            add_circle
-          </span>
-        </a>
-        <a href="#">
-          <span class="material-symbols-outlined explorar-server">
-            explore
-          </span>
-        </a>
-      </div>
+      <ul class="tools">
+        <!-- <li>
+              <a href="#" class="my-server">
+                  <span class="material-symbols-outlined " title="">
+                      dns
+                      </span>
+              </a>
+          </li> -->
+        <li>
+          <a href="#" class="new-server" id="create_server">
+            <span class="material-symbols-outlined crear-server" title="Crear servidor">
+              add_circle
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="material-symbols-outlined explorar-server" title="Explorar">
+              explore
+            </span>
+          </a>
+        </li>
+
+      </ul>
       <!-- PARA MOSTRAR USUARIO -->
       <div class="user-card">
         <div class="avatar">
-          <img src="../assets/avatar_prueba.jpg" alt="john">
+          <img src="../../assets/images/avatar_prueba.jpg" alt="john">
         </div>
         <div class="user-name">John</div>
       </div>
@@ -48,13 +55,14 @@
     <div class="servers-container">
       <input type="text" class="search-bar" name="search-bar" id="search-bar" placeholder="Buscar Servidor...">
       <div class="servers">
-        <a href="#" class="cinema-link">
+        
+        <a href="#" class="cinema-link server">
           <span class="material-symbols-outlined">
             cinematic_blur
           </span>
           <span class="title-icon">Cine</span>
         </a>
-        <a href="#" class="travel-link">
+        <a href="#" class="travel-link server">
           <span class="material-symbols-outlined">
             connecting_airports
           </span>
@@ -95,7 +103,7 @@
     </div>
 
     <!-- MODAL NUEVO SERVER -->
-    <dialog class="nuevo-modal">
+    <dialog class="new-modal" id="modalCreateServer">
       <div class="modal-container">
         <h3>Crear Nuevo Servidor</h3>
         <form action="#">
@@ -107,8 +115,21 @@
       </div>
     </dialog>
 
-  </div>
-  <script src="../js/servidores.js"></script>
+    <!-- MODAL NUEVO SERVER -->
+    <dialog class="new-modal" id="modalJoinServer">
+      <div class="modal-container">
+        <h3>Unirse a un servidor</h3>
+        <form action="#">
+          <br>
+          <p id="modalText"></p>
+          <button type="submit" class="btn-form-ns">Unirse</button>
+          <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
+        </form>
+      </div>
+    </dialog>
+
+    <script src="search_server.js"></script>
+    <script src="../../script.js"></script>
 </body>
 
 </html>

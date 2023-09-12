@@ -59,7 +59,7 @@ img {
   display: flex;
 }
 
-.menu-lateral {
+.side-bar {
   height: 100vh;
   /* width: clamp(20%,7vh,7%); */
   width: 8vw;
@@ -118,13 +118,15 @@ img {
   background-image: linear-gradient(131deg,
       rgba(28, 118, 173, 0.92),
       rgba(83, 184, 152, 1));
-
   height: 100vh;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* CUADRO DE INFO */
-.drop-info {
+/* .drop-info {
   display: none;
   position: absolute;
   background-color: transparent;
@@ -132,11 +134,12 @@ img {
   text-align:start;
   z-index: 1;
   margin-top: -12px;
-}
+} */
 
-.drop-info p{
+/* .drop-info p{
   color: whitesmoke;
-}
+} */
+
 .tools a span:hover~div{
   display: block;
 }
@@ -146,6 +149,24 @@ img {
 [class^="chanel-"] a:hover {
   color: rgb(135, 230, 200);
 }
+
+
+.message{
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
 
 /* SERVER CHANELS */
 .server-chanles{
@@ -169,4 +190,69 @@ img {
 
 .visible{
   display: none;
+}
+
+/* MODAL */
+.new-modal {
+  background-color: rgba(83, 184, 152, 1);
+  background-image: linear-gradient(135deg,
+      rgba(47, 145, 224, 0.91),
+      rgba(7, 31, 51, 0.97) 79%);
+  background-image: linear-gradient(131deg,
+      rgba(28, 118, 173, 0.92),
+      rgba(83, 184, 152, 1));
+  
+
+  overflow: hidden;
+  border-radius: 5%;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  top: 30%;
+  left: 30%;
+  width: 600px;
+  height: 200px;
+  z-index: 10;
+  border: 5px solid whitesmoke
+}
+
+.modal-container h3{
+  color: whitesmoke;
+  font-weight: bolder;
+  text-align: center;
+  margin: 5px;
+  font-size: 2rem;
+}
+
+.modal-container p{
+  color: whitesmoke;
+  font-weight: bolder;
+  text-align: center;
+  margin: 5px;
+  font-size: 1.5rem;
+}
+
+.modal-container input{
+  /* font-family: var(--FF); */
+  font-size: 1.5rem;
+  padding: 8px;
+  margin: 5px 15px;
+  width: 95%;
+  margin: 10px;
+}
+
+.modal-container input:focus{
+  outline: solid 2px rgb(186, 213, 230);
+}
+.btn-form-ns{
+  margin: 10px;
+  width: 120px;
+  padding: 5px;
+  font-size: 1.5rem;
+  margin-left: 120px;
+  border-radius: 15px;
+}
+
+.btn-form-ns:hover{
+  cursor: pointer;
 }
