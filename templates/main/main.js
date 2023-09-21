@@ -1,5 +1,8 @@
 const d = document,
-  w = window;
+  w = window,
+  $ul = d.querySelector(".tools"),
+  $fragment=d.createDocumentFragment(),
+  $userCard = d.querySelector(".user-card .user-name")
 
 d.addEventListener("DOMContentLoaded", (e) => {
   console.log("inicisate session");
@@ -51,7 +54,22 @@ function getServidores(user_id) {
       return response.json();
     })
     .then((data) => {
+      // Inserta de manera dinámica los servidores en el DOM
       console.log(data)
+      const servers = data.Servers
+      servers.forEach(server=>{
+        const $li = d.createElement("li")
+        $li.innerHTML=`
+        <a href="#" id=${server.server_id}>
+            <span class="material-symbols-outlined crear-server" title=${server.server_name}>
+                add_circle
+            </span>
+        </a>
+        `
+        $fragment.appendChild($li)
+      })
+      $ul.prepend($fragment)
+      $userCard.textContent=`${data.user_name}`
     })
     .catch((error) => {
       console.log(error);
