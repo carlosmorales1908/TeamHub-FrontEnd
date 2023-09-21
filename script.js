@@ -1,6 +1,5 @@
 const apiHost = 'http://127.0.0.1:5000'
 const host = 'http://127.0.0.1:5501/'
-console.log("IN")
 
 // const d = document;
 
@@ -13,7 +12,7 @@ console.log("IN")
 // })
 
 
-let userId = 1;
+let userId;
 
 document.addEventListener('DOMContentLoaded', function () {
   //getUserData(userId);
@@ -168,7 +167,8 @@ btnCreateServer.addEventListener('click', function(event){
       .then(response => {
         if (response.error) {
           // Maneja el error de la API
-          showModalError(response.error.description);
+          return showModalError(response.error.description);
+          
           console.error('Error de la API:', response.error.description);
         } else {
           // Procede con la lógica de la aplicación si la respuesta es exitosa
