@@ -1,6 +1,6 @@
 const apiHost = 'http://127.0.0.1:5000'
 const host = 'http://127.0.0.1:5501/'
-
+console.log("IN")
 
 // const d = document;
 
