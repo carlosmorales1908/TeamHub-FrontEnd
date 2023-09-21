@@ -210,8 +210,8 @@ img {
   flex-direction: column;
   top: 30%;
   left: 30%;
-  width: 600px;
-  height: 200px;
+  width: 40rem;
+  height: 17rem;
   z-index: 10;
   border: 5px solid whitesmoke
 }
@@ -255,4 +255,15 @@ img {
 
 .btn-form-ns:hover{
   cursor: pointer;
+}
+
+                                  /***************/
+                                  /* MODAL ERROR */
+                                  /***************/
+#errorTitle{
+  
+  
+}
+#errorMessage{
+  color: #ffbc00;
 }
