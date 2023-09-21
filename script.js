@@ -16,8 +16,9 @@ const host = 'http://127.0.0.1:5501/'
 let userId = 1;
 
 document.addEventListener('DOMContentLoaded', function () {
-  getUserData(userId);
+  //getUserData(userId);
 
+  getUserAuthenticated();
 });
 
 const userName = document.getElementById('user-name')
@@ -84,9 +85,30 @@ function getUserData(id){
     .catch(error => {
       console.error('Error:', error);
     });
-
 }
 
+
+function getUserAuthenticated(){
+  let url = apiHost + '/auth/profile';
+  console.log(url);
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('La solicitud no fue exitosa');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      userName.textContent = data.user_name;
+      userId = data.user_id;
+      console.log(userId);
+      
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
 function getServers(){
   let url = apiHost + '/api/all_servers';
