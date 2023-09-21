@@ -9,7 +9,7 @@
 }
 
 body{
-  height: 200vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,4 +33,22 @@ body{
   margin: 15px;
   padding: 5px;
   font-size: 1.5rem;
+}
+
+.login-form {
+  margin-top: 3%;
+}
+
+.get-data:hover{
+  cursor: pointer;
+}
+
+a {
+  font-size: 1.2rem ;
+  color: whitesmoke;
+}
+
+a:hover {
+  color: skyblue;
+  cursor: pointer;
 }
