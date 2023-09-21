@@ -4,7 +4,7 @@ $btnData = d.querySelector(".get-data")
 // $inputs = d.querySelectorAll(".login-form input")
 
 
-$btnData.addEventListener("click",e=>{
+$form.addEventListener("submit",e=>{
   e.preventDefault()
   const $formData = new FormData($form),
     name = $formData.get("name"),
@@ -12,7 +12,6 @@ $btnData.addEventListener("click",e=>{
     login(name,password)
 })
 
-let LOGGED_USER_ID
 
 function login(name,password){
   const data = {
@@ -21,16 +20,17 @@ function login(name,password){
   }
   fetch('http://127.0.0.1:5000/auth/login', {
   method: 'POST',
-  body: JSON.stringify(data),
   headers:{
   'Content-Type': 'application/json'
-  }
+  },
+  body: JSON.stringify(data),
+  credentials: 'include'
   })
   .then(response=>{
     if (response.status===200){
       return response.json().then(data=>{
-        LOGGED_USER_ID = data.user_id;
         window.location.href = "../main/main.html";
+        console.log(data)
       })
     }
   })

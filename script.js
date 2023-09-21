@@ -14,11 +14,11 @@ const host = 'http://127.0.0.1:5501/'
 
 let userId;
 
-document.addEventListener('DOMContentLoaded', function () {
-  //getUserData(userId);
+// document.addEventListener('DOMContentLoaded', function () {
+//   //getUserData(userId);
 
-  getUserAuthenticated();
-});
+//   getUserAuthenticated();
+// });
 
 const userName = document.getElementById('user-name')
 const serversList = document.getElementById('servers-list');
@@ -87,27 +87,27 @@ function getUserData(id){
 }
 
 
-function getUserAuthenticated(){
-  let url = apiHost + '/auth/profile';
-  console.log(url);
-  fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('La solicitud no fue exitosa');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-      userName.textContent = data.user_name;
-      userId = data.user_id;
-      console.log(userId);
+// function getUserAuthenticated(){
+//   let url = apiHost + '/auth/profile';
+//   console.log(url);
+//   fetch(url)
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error('La solicitud no fue exitosa');
+//       }
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       userName.textContent = data.user_name;
+//       userId = data.user_id;
+//       console.log(userId);
       
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+// }
 
 function getServers(){
   let url = apiHost + '/api/all_servers';
