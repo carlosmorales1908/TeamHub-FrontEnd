@@ -25,44 +25,6 @@ const userName = document.getElementById('user-name')
 
 
 
-/*
-const btnCreateUser = document.getElementById('btn');
-btnCreateUser.addEventListener('click', function(){
-  let url = host + '/api/users';
-  //console.log(url);
-
-  const dataToSend = {
-    first_name: 'Daniel',
-    last_name: 'Morales',
-    email: 'daniel@gmail.com',
-    user_name: 'CHINIs92',
-    password: '123456789',
-    date_of_birth: '1992-01-01'
-  };
-
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(dataToSend)
-  };
-
-  fetch(url, requestOptions)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Hubo un error al enviar los datos.');
-      }
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-
-})
-*/
 
 function getUserData(id){
   let url = apiHost + '/api/users/' + id;
@@ -102,6 +64,7 @@ function getUserAuthenticated(){
     console.log('data: ',data);
     userName.textContent = data.user_name;
     userId = data.user_id;
+    getUserServers();
     console.log(userId);
   })
     // .then(response => {
@@ -141,12 +104,56 @@ function getServers(){
 
 
 
-//          MODAL create server
+// Obtenemos los servidores del usuario que inica sesión
+function getUserServers() {
+  const url = apiHost + '/api/user_server/' + userId;
+  fetch(url, {
+    method: "GET",
+    credentials: "include",
+  })
+    // .then((response) => {
+    //   if (!response.ok) {
+    //     throw new Error("Error en la solicitud");
+    //   }
+    //   return response.json();
+    // })
+    .then(res=>res.ok?res.json():Promise.reject(res))
+    .then((data) => {
+      // Inserta de manera dinámica los servidores en el DOM
+      console.log(data)
+      const servers = data.Servers
+      const fragTemp = document.createDocumentFragment();
+      servers.forEach(server=>{
+        const liElement = document.createElement("li");
+        liElement.innerHTML=`
+        <a href="#" >
+            <span class="material-symbols-outlined my-server crear-server" title=${server.server_name} id=${server.server_id}>
+                dns
+            </span>
+        </a>
+        <small class="server_name">${server.server_name}</small>
+        `;
+        fragTemp.appendChild(liElement);
+      });
+      const userServers = document.getElementById('servers-list'); 
+      userServers.prepend(fragTemp);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
 
-const btnCreateServer = document.getElementById('btn-create-server');
-btnCreateServer.addEventListener('click', function(event){
-  event.preventDefault();
+
+
+
+
+
+
+
+//          FUNCION PARA CREAR UN SERVIDOR DESDE EL MODAL
+
+function createServer(){
   let url = apiHost + '/api/servers';
   console.log(url);
 
@@ -195,37 +202,17 @@ btnCreateServer.addEventListener('click', function(event){
     console.log('hay campos sin completar');
   }
   
-  
-
-  
+};
 
 
 
-
-  
-
-})
-
-
-
-
-
-
-
-
-const modalCreateServer = document.getElementById('modalCreateServer');
-const createServer = document.getElementById('create_server');
-createServer.addEventListener("click", function() {
-    modalCreateServer.showModal();
-});
 
 
   
-//          MODAL join server
+//          MODAL JOIN SERVER
 const modalJoinServer = document.getElementById('modalJoinServer');
 const modalText = document.getElementById('modalText');
 const serversList = document.querySelectorAll('.server');
-
 serversList.forEach(function(server) {
   server.addEventListener("click", function() {
     if (server) {
@@ -239,27 +226,70 @@ serversList.forEach(function(server) {
 });
 
 
-//    MODAL Error
-const btnModalError = document.getElementById('btn-close-modalError');
-const modalError = document.getElementById('modalError');
+// MODAL CREAR SERVIDOR
+
+const newServer = document.getElementById('create_server');
+newServer.addEventListener("click", function() {
+  showModalNewServer();
+});
+function showModalNewServer(){
+  const modalContainer = document.getElementById('newServerModalContainer');
+  const modalHTML = `
+    <dialog class="new-modal" id="modalCreateServer">
+      <div class="modal-container">
+          <h3>Crear Nuevo Servidor</h3>
+          <form id="form-new-server" action="#">
+              <input type="text" name="server_name" id="server_name" placeholder="Nombre del servidor">
+              <input type="text" name="description" id="description" placeholder="Breve descripción del servidor">
+              <button id="btn-create-server" type="submit" class="btn-form-ns">Crear</button>
+              <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
+          </form>
+      </div>
+    </dialog>`;
+    modalContainer.innerHTML = modalHTML;
+    const modalCreateServer = document.getElementById('modalCreateServer');
+    modalCreateServer.showModal();
+    const btnCreateServer = document.getElementById('btn-create-server');
+    btnCreateServer.addEventListener('click', function(event){
+      event.preventDefault();
+      createServer();
+    });
+};
+
+
+//    MODAL ERROR
 function showModalError(message) {
-  //const errorTitle = document.getElementById('errorTitle');
-  const errorMessage = document.getElementById('errorMessage');
-  errorMessage.textContent = message;
+  const modalContainer = document.getElementById('errorModalContainer');
+  const modalHTML= `
+  <dialog class="new-modal" id="modalError">
+    <div class="modal-container">
+        <h3 id="errorTitle">Ha ocurrido un error</h3>
+        <p id="errorMessage">${message}</p>
+        <button class="btn-form-ns" id="btn-close-modalError">Aceptar</button>
+    </div>
+  </dialog>`;
+  modalContainer.innerHTML = modalHTML;
+  const btnModalError = document.getElementById('btn-close-modalError');
+  const modalError = document.getElementById('modalError');
+  btnModalError.addEventListener('click', function () {
+    modalError.close();
+  });
   modalError.showModal();
 }
 
-document.getElementById('btn-close-modalError').addEventListener('click', function () {
-  modalError.close();
-});
 
-function objectNotEmpty(objeto) {
-  for (let clave in objeto) {
-    if (objeto.hasOwnProperty(clave)) {
-      if (objeto[clave] === undefined || objeto[clave] === null || objeto[clave] === '') {
+//                                                        FUNCIONES DE UTILIDAD
+
+
+function objectNotEmpty(object) {
+  for (let key in object) {
+    if (object.hasOwnProperty(key)) {
+      if (object[key] === undefined || object[key] === null || object[key] === '') {
         return false;
       }
     }
   }
   return true; // Devuelve true si todas las claves tienen valor
-}
+};
+
+

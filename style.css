@@ -83,10 +83,10 @@ img {
   align-items: center;
 }
 
-.mi-server,
+.my-server,
 .crear-server,
 .explorar-server {
-  font-size: 80px;
+  font-size: 80px !important;
   color: whitesmoke;
 }
 
@@ -192,6 +192,7 @@ img {
   display: none;
 }
 
+
 /* MODAL */
 .new-modal {
   background-color: rgba(83, 184, 152, 1);
@@ -256,6 +257,8 @@ img {
 .btn-form-ns:hover{
   cursor: pointer;
 }
+
+
 
                                   /***************/
                                   /* MODAL ERROR */
