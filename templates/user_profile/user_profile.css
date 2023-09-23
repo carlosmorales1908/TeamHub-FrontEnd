@@ -110,7 +110,8 @@ body{
   justify-content: space-evenly;
 }
 
-.modify-profile input{
+.modify-profile input,
+.modify-profile button{
   width: 20%;
   margin: 5px;
   border-radius: 20px;
@@ -125,6 +126,12 @@ body{
 
 .change-pass-container a:hover{
   color: whitesmoke;
+}
+
+button:hover{
+  cursor: pointer;
+  color: whitesmoke;
+  background-color: blueviolet;
 }
 
 /* MODAL CHANGE PASSWORD */

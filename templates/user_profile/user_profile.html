@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../style/user_profile.css">
+  <link rel="stylesheet" href="user_profile.css">
   <title>User Profile</title>
 </head>
 <body>
@@ -11,9 +11,9 @@
     <!-- CABECERA -->
     <div class="user-profile">
       <figure>
-        <img class="user-avatar" src="../assets/images/avatar_prueba.jpg" alt="John">
+        <img class="user-avatar" src="../../assets/images/avatar_prueba.jpg" alt="John">
       </figure>
-      <div class="card-user-name"> JOHN SALCHICHON</div>
+      <!-- <div class="card-user-name"> JOHN SALCHICHON</div> -->
     </div>
     <!-- FORM -->
     <form action="#" class="user-form">
@@ -21,33 +21,33 @@
         <span>
           <label class="lbl-user-name" for="user-name">Nombre de usuario</label>
         </span>
-          <input class="inp-user-name" type="text">
+          <input class="inp-user-name" type="text" name="user-name" id="user-name">
         <button class="btn-user-name">Editar</button>
       </div>
       <div class="input-info">
         <span>
           <label class="lbl-name" for="name">Nombre</label>
         </span>
-        <input class="inp-name" type="text">
+        <input class="inp-name" type="text" name="name" id="name">
         <button class="btn-name">Editar</button>
       </div>
       <div class="input-info">
         <span>
           <label class="lbl-lname" for="lname">Apellido</label>
         </span>
-        <input class="inp-lname" type="text">
+        <input class="inp-lname" type="text" name="lname" id="lname">
         <button class="btn-lname">Editar</button>
       </div>
       <div class="input-info">
         <span>
           <label class="lbl-email" for="email">Correo</label>
         </span>
-        <input class="inp-email" type="email">
+        <input class="inp-email" type="email" name="email" id="email">
         <button class="btn-email">Editar</button>
       </div>
       <div class="modify-profile">
-        <input type="submit" value="Guardar">
-        <input type="submit" value="Cancelar">
+        <button type="submit" class="get-data">Confirmar</button>
+        <button class="cancelar-cambios">Cancelar</button>
       </div>
       <div class="change-pass-container">
         <a href="#" class="change-password">Cambiar contraseña</a>
@@ -61,7 +61,7 @@
       <h3>Cambiar contraseña</h3>
       <form action="#" class="password-form">
         <label for="actual-pass">Contraseña Actual</label>
-        <input type="password" name="actual-pass" id="actual-pass" >
+        <input type="text" class="inp-current-pass" name="actual-pass" id="actual-pass" >
         <label for="new-pass">Nueva contraseña</label>
         <input type="password" name="new-pass" id="new-pass" >
         <label for="confirm-new-pass">Confirmar contraseña</label>
@@ -74,6 +74,6 @@
     </div>
   </dialog>
 
-  <script src="../js/user_profile.js"></script>
+  <script src="user_profile.js"></script>
 </body>
 </html>
