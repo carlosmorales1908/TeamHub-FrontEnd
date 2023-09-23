@@ -14,14 +14,12 @@ const host = 'http://127.0.0.1:5501/'
 
 let userId;
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   //getUserData(userId);
-
-//   getUserAuthenticated();
-// });
+document.addEventListener('DOMContentLoaded', function () {
+  getUserAuthenticated();
+});
 
 const userName = document.getElementById('user-name')
-const serversList = document.getElementById('servers-list');
+//const serversList = document.getElementById('servers-list');
 
 //http://127.0.0.1:5000/api/all_servers
 
@@ -87,30 +85,44 @@ function getUserData(id){
 }
 
 
-// function getUserAuthenticated(){
-//   let url = apiHost + '/auth/profile';
-//   console.log(url);
-//   fetch(url)
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error('La solicitud no fue exitosa');
-//       }
-//       return response.json();
-//     })
-//     .then(data => {
-//       console.log(data);
-//       userName.textContent = data.user_name;
-//       userId = data.user_id;
-//       console.log(userId);
-      
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//     });
-// }
+function getUserAuthenticated(){
+  let url = apiHost + '/auth/profile';
+  console.log(url);
+  fetch(url, {
+    method: "GET",
+    credentials: "include",
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Error en la solicitud");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log('data: ',data);
+    userName.textContent = data.user_name;
+    userId = data.user_id;
+    console.log(userId);
+  })
+    // .then(response => {
+    //   if (!response.ok) {
+    //     throw new Error('La solicitud no fue exitosa');
+    //   }
+    //   return response.json();
+    // })
+    // .then(data => {
+    //   console.log('data: ',data);
+    //   userName.textContent = data.user_name;
+    //   userId = data.user_id;
+    //   console.log(userId);
+    // })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
 function getServers(){
-  let url = apiHost + '/api/all_servers';
+  let url = apiHost + '/api/user_server/' + id;
   fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -167,9 +179,8 @@ btnCreateServer.addEventListener('click', function(event){
       .then(response => {
         if (response.error) {
           // Maneja el error de la API
-          return showModalError(response.error.description);
-          
           console.error('Error de la API:', response.error.description);
+          return showModalError(response.error.description);
         } else {
           // Procede con la lógica de la aplicación si la respuesta es exitosa
           console.log('Respuesta de la API:', response);
@@ -213,19 +224,20 @@ createServer.addEventListener("click", function() {
 //          MODAL join server
 const modalJoinServer = document.getElementById('modalJoinServer');
 const modalText = document.getElementById('modalText');
-//const serversList = document.querySelectorAll('.server');
+const serversList = document.querySelectorAll('.server');
 
-// serversList.forEach(function(server) {
-//   server.addEventListener("click", function() {
-//     if (server) {
-//       let spanTitleIcon = server.querySelector('span.title-icon');
-//       var texto = spanTitleIcon.textContent;   
-//       console.log(texto);
-//       modalText.textContent = `¿Quieres unirte a ${texto}?`
-//       modalJoinServer.showModal();
-//     }
-//   });
-// });
+serversList.forEach(function(server) {
+  server.addEventListener("click", function() {
+    if (server) {
+      let spanTitleIcon = server.querySelector('span.title-icon');
+      var texto = spanTitleIcon.textContent;   
+      console.log(texto);
+      modalText.textContent = `¿Quieres unirte a ${texto}?`
+      modalJoinServer.showModal();
+    }
+  });
+});
+
 
 //    MODAL Error
 const btnModalError = document.getElementById('btn-close-modalError');
