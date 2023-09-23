@@ -67,8 +67,15 @@ body{
   outline: solid 2px rgb(201, 222, 236);
 }
 
+.get-data{
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
 .get-data:hover{
   cursor: pointer;
+  color: whitesmoke;
+  background-color: blueviolet;
 }
 
 a {
