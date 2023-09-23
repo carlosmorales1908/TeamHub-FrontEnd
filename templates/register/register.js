@@ -1,41 +1,42 @@
+const form = document.querySelector(".my-form")
 
-//CODIGO DE PRUEBA PARA CREAR UN USUARIO, FALTA TERMINARLO
+form.addEventListener('submit', e=>{
+  e.preventDefault()
+  const formData = new FormData(form),
+    name = formData.get("name"),
+    lName = formData.get("lname"),
+    email = formData.get("email"),
+    userName = formData.get("user_name"),
+    password = formData.get("password"),
+    dob = formData.get("dob")
 
-/*
-const btnCreateUser = document.getElementById('btn');
-btnCreateUser.addEventListener('click', function(){
-  let url = host + '/api/users';
-  //console.log(url);
+  const url = 'http://127.0.0.1:5000/api/users';
+  console.log(url);
 
   const dataToSend = {
-    first_name: 'Daniel',
-    last_name: 'Morales',
-    email: 'daniel@gmail.com',
-    user_name: 'CHINIs92',
-    password: '123456789',
-    date_of_birth: '1992-01-01'
+    first_name: name,
+    last_name: lName,
+    email: email,
+    user_name: userName,
+    password: password,
+    date_of_birth: dob
   };
 
   const requestOptions = {
     method: 'POST',
+    body: JSON.stringify(dataToSend),
     headers: {
       'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(dataToSend)
+    }
   };
 
   fetch(url, requestOptions)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Hubo un error al enviar los datos.');
-      }
-    })
+    .then(res=>res.ok?res.json():Promise.reject(res))
     .then(data => {
+      window.location.href = "../login/login.html";
       console.log(data);
     })
     .catch(error => {
       console.error('Error:', error);
     });
-
 })
-*/
