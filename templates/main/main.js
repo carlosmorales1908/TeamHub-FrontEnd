@@ -9,7 +9,7 @@ d.addEventListener("DOMContentLoaded", (e) => {
   getProfile();
 });
 
-// Funcion para hacer el GET de los datos del usuario que inica sesión
+//Funcion para hacer el GET de los datos del usuario que inica sesión
 function getProfile() {
   const URL = "http://127.0.0.1:5000/auth/profile";
   return fetch(URL, {
@@ -89,12 +89,6 @@ d.addEventListener("click",e=>{
     method: "GET",
     credentials: "include",
   })
-    // .then((response) => {
-    //   if (!response.ok) {
-    //     throw new Error("Error en la solicitud");
-    //   }
-    //   return response.json();
-    // })
     .then(res=>res.ok?res.json():Promise.reject(res))
     .then((data) => {
       console.log(data)
