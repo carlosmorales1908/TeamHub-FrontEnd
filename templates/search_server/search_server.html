@@ -18,7 +18,7 @@
     <!-- MENU LATERAL -->
     <div class="side-bar">
       <!-- PARA MOSTRAR HERRAMIENTAS -->
-      <ul class="tools">
+      <ul class="tools" id="servers-list">
         <!-- <li>
               <a href="#" class="my-server">
                   <span class="material-symbols-outlined " title="">
@@ -102,20 +102,8 @@
       </div>
     </div>
 
-    <!-- MODAL NUEVO SERVER -->
-    <dialog class="new-modal" id="modalCreateServer">
-      <div class="modal-container">
-        <h3>Crear Nuevo Servidor</h3>
-        <form action="#">
-          <input type="text" name="text" id="text" placeholder="Nombre del servidor...">
-          <br>
-          <button id="btn-create-server" type="submit" class="btn-form-ns">Crear</button>
-          <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
-        </form>
-      </div>
-    </dialog>
 
-    <!-- MODAL NUEVO SERVER -->
+    <!-- MODAL JOIN SERVER -->
     <dialog class="new-modal" id="modalJoinServer">
       <div class="modal-container">
         <h3>Unirse a un servidor</h3>
@@ -128,14 +116,10 @@
       </div>
     </dialog>
 
+     <!-- MODAL NUEVO SERVER -->
+     <div id="newServerModalContainer"></div>
      <!-- MODAL ERROR -->
-     <dialog class="new-modal" id="modalError">
-      <div class="modal-container">
-          <h3 id="errorTitle">Ha ocurrido un error</h3>
-          <p id="errorMessage">Mensaje de error de la API</p>
-          <button class="btn-form-ns" id="btn-close-modalError">Aceptar</button>
-      </div>
-  </dialog>
+     <div id="errorModalContainer"></div>
 
     <script src="search_server.js"></script>
     <script src="../../script.js"></script>
