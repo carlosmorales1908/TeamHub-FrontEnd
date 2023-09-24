@@ -8,6 +8,7 @@ const inputName = document.querySelector(".inp-name")
 const inputLName = document.querySelector(".inp-lname")
 const inputEmail = document.querySelector(".inp-email")
 const inputCurrentPass = document.querySelector(".inp-current-pass")
+const inputNewPass = document.querySelector(".new-pass")
 
 document.addEventListener("DOMContentLoaded",e=>{
   const URL = `http://127.0.0.1:5000/auth/profile`;
@@ -30,35 +31,53 @@ document.addEventListener("DOMContentLoaded",e=>{
 })
 
 //        TODO
-/*
-form.addEventListener('submit', e=>{
-  e.preventDefault()
-  console.log("quisiste guardar los cambios")
-  const formData = new FormData(form),
-    name = formData.get("name"),
-    lName = formData.get("lname"),
-    email = formData.get("email"),
-    userName = formData.get("user-name")
-
-    console.log(name)
-    console.log(lName)
-    console.log(email)
-    console.log(userName)
-  })
-*/
 
 document.addEventListener("click",e=>{
   e.preventDefault()
-  if (e.target.matches("button")){
+  if (e.target.matches(".btn-editar")){
     e.target.previousElementSibling.disabled = false
   }
+
+  //  FALTA CAPTURAR EL ID
+  if (e.target.matches(".get-data")){
+    const url = 'http://127.0.0.1:5000/api/users/id';
+    console.log(url);
+
+    const dataToSend = {
+      first_name: inputName.value,
+      last_name: inputLName,
+      email: inputEmail,
+      user_name: inputUserName,
+      password: inputNewPass
+    };
+
+    const requestOptions = {
+      method: 'PUT',
+      body: JSON.stringify(dataToSend),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    };
+
+    fetch(url, requestOptions)
+      .then(res=>res.ok?res.json():Promise.reject(res))
+      .then(data => {
+        window.location.href = "../main/main.html";
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
 })
 
 
-changePassword.addEventListener("click",e=>{
-  e.preventDefault()
-  modal.showModal()
-})
+//        SE PUEDE METER TODO EN EL EVENT DE ARRIBA
+
+// changePassword.addEventListener("click",e=>{
+//   e.preventDefault()
+//   modal.showModal()
+// })
 
 // cerrarModal.addEventListener("click",e=>{
 //   modal.close()
