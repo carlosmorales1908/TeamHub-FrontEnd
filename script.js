@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const userName = document.getElementById('user-name')
-//const serversList = document.getElementById('servers-list');
 
 //http://127.0.0.1:5000/api/all_servers
 
@@ -67,40 +66,10 @@ function getUserAuthenticated(){
     getUserServers();
     console.log(userId);
   })
-    // .then(response => {
-    //   if (!response.ok) {
-    //     throw new Error('La solicitud no fue exitosa');
-    //   }
-    //   return response.json();
-    // })
-    // .then(data => {
-    //   console.log('data: ',data);
-    //   userName.textContent = data.user_name;
-    //   userId = data.user_id;
-    //   console.log(userId);
-    // })
     .catch(error => {
       console.error('Error:', error);
     });
 }
-
-function getServers(){
-  let url = apiHost + '/api/user_server/' + id;
-  fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('La solicitud no fue exitosa');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
-
 
 
 
@@ -111,12 +80,6 @@ function getUserServers() {
     method: "GET",
     credentials: "include",
   })
-    // .then((response) => {
-    //   if (!response.ok) {
-    //     throw new Error("Error en la solicitud");
-    //   }
-    //   return response.json();
-    // })
     .then(res=>res.ok?res.json():Promise.reject(res))
     .then((data) => {
       // Inserta de manera dinámica los servidores en el DOM
@@ -142,12 +105,6 @@ function getUserServers() {
       console.log(error);
     });
 }
-
-
-
-
-
-
 
 
 
@@ -196,6 +153,7 @@ function createServer(){
       })
       .catch(error => {
         console.error('Error:', error);
+        return showModalError(error);
       });
   }
   else{
@@ -205,15 +163,12 @@ function createServer(){
 };
 
 
-
-
-
   
 //          MODAL JOIN SERVER
 const modalJoinServer = document.getElementById('modalJoinServer');
 const modalText = document.getElementById('modalText');
-const serversList = document.querySelectorAll('.server');
-serversList.forEach(function(server) {
+const serversListElement = document.querySelectorAll('.server');
+serversListElement.forEach(function(server) {
   server.addEventListener("click", function() {
     if (server) {
       let spanTitleIcon = server.querySelector('span.title-icon');
