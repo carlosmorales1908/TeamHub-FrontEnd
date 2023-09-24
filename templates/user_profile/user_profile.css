@@ -128,6 +128,17 @@ body{
   color: whitesmoke;
 }
 
+.error-message{
+  display: flex;
+  color: red;
+  justify-content: center;
+  align-items: center;
+}
+
+.visible{
+  display: none;
+}
+
 button:hover{
   cursor: pointer;
   color: whitesmoke;

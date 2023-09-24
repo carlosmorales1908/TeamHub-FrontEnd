@@ -46,7 +46,7 @@
         <button class="btn-editar">Editar</button>
       </div>
       <div class="modify-profile">
-        <button type="submit" class="get-data">Confirmar</button>
+        <button type="submit" class="send-data">Confirmar</button>
         <button class="cancelar-cambios">Cancelar</button>
       </div>
       <div class="change-pass-container">
@@ -65,15 +65,17 @@
         <label for="new-pass">Nueva contraseña</label>
         <input type="password" class="new-pass" name="new-pass" id="new-pass" >
         <label for="confirm-new-pass">Confirmar contraseña</label>
-        <input type="password" name="confirm-new-pass" id="confirm-new-pass" >
+        <input type="password" class="confirm-new-pass" name="confirm-new-pass" id="confirm-new-pass" >
         <div class="modify-pass">
-          <button type="submit" class="btn-form-ns">Confirmar</button>
+          <button type="submit" class="btn-form-ns confirm-modal">Confirmar</button>
           <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
+        </div>
+        <div class="error-message visible">
+          <span>Error: las contraseñas no coinciden.</span>
         </div>
       </form>
     </div>
   </dialog>
-
   <script src="user_profile.js"></script>
 </body>
 </html>
