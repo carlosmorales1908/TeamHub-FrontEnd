@@ -164,21 +164,7 @@ function createServer(){
 
 
   
-//          MODAL JOIN SERVER
-const modalJoinServer = document.getElementById('modalJoinServer');
-const modalText = document.getElementById('modalText');
-const serversListElement = document.querySelectorAll('.server');
-serversListElement.forEach(function(server) {
-  server.addEventListener("click", function() {
-    if (server) {
-      let spanTitleIcon = server.querySelector('span.title-icon');
-      var texto = spanTitleIcon.textContent;   
-      console.log(texto);
-      modalText.textContent = `¿Quieres unirte a ${texto}?`
-      modalJoinServer.showModal();
-    }
-  });
-});
+
 
 
 // MODAL CREAR SERVIDOR

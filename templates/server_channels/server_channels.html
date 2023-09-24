@@ -13,40 +13,38 @@
 <body>
     <div class="general-container">
         <!-- MENU LATERAL -->
-        <div class="side-bar">
-            <!-- PARA MOSTRAR HERRAMIENTAS -->
-            <ul class="tools">
-                <li>
-                    <a href="#" class="my-server">
-                        <span class="material-symbols-outlined mi-server" title="Mi servidor">
-                            account_circle
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="new-server">
-                        <span class="material-symbols-outlined crear-server" title="Crear servidor">
-                            add_circle
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="material-symbols-outlined explorar-server" title="Explorar">
-                            explore
-                        </span>
-                    </a>
-                </li>
-                
-            </ul>
-            <!-- PARA MOSTRAR USUARIO -->
-            <div class="user-card">
-                <div class="avatar">
-                    <img src="../../assets/images/avatar_prueba.jpg" alt="john">
-                </div>
-                <div class="user-name">John</div>
-            </div>
+    <div class="side-bar">
+        <!-- PARA MOSTRAR HERRAMIENTAS -->
+        <ul class="tools" id="servers-list">
+          <li>
+            <a href="#" class="new-server" id="create_server">
+              <span class="material-symbols-outlined crear-server" title="Crear servidor">
+                add_circle
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="material-symbols-outlined explorar-server" title="Explorar">
+                explore
+              </span>
+            </a>
+          </li>
+  
+        </ul>
+        <!-- PARA MOSTRAR USUARIO -->
+        <div class="user-card">
+          <div class="avatar">
+            <img src="../../assets/images/avatar_prueba.jpg" alt="john">
+          </div>
+          <div class="user-name"id="user-name"></div>
         </div>
+      </div>
+  
+      <!-- MENU GENERAL -->
+      <div class="chat-container">
+        
+      </div>
 
         <!-- SERVER CHANELS -->
         <!-- <div class="server-chanles visible">
@@ -60,16 +58,10 @@
                 <a href="#">CANAL 3</a>
             </div>
         </div> -->
-        <!-- MENU GENERAL -->
-        <div class="servers-container">
-            <div class="servers">
-            </div>
-            <div class="message">
-                <h2>Aún no te has unido a un servidor</h2>
-                <h2>Únete a uno o crea uno propio</h2>
-            </div>
-        </div>
     </div>
+
+    <script src="../../script.js"></script>
 </body>
 
 </html>
+

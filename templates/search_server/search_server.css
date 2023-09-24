@@ -46,9 +46,18 @@
   font-size: 2rem;
 }
 
+.servers a{
+  text-decoration: none;
+}
+
 .servers a:hover,
 .tools a span:hover {
   color: rgb(135, 230, 200);
+}
+
+.servers a:visited {
+  color: whitesmoke; /* Cambia el color del texto de los enlaces visitados */
+  background-color: transparent; /* Establece el fondo como transparente */
 }
 
 /* TEST DEL MODAL */

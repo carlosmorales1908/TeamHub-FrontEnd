@@ -1,53 +1,56 @@
 let serversList;
+let serverClickedData;
 document.addEventListener('DOMContentLoaded', function () {
     getServers();
+    addListenerToJoinModal();
     const searchBar = document.getElementById('search-bar');
-    searchBar.addEventListener('keyup', function (){
+    searchBar.addEventListener('keyup', function () {
         const text = searchBar.value.toLowerCase();
-        if(text != ""){
-            let serversListFiltered = filterServersByName(serversList,text);
-            if(serversListFiltered.length > 0){
+        if (text != "") {
+            let serversListFiltered = filterServersByName(serversList, text);
+            if (serversListFiltered.length > 0) {
                 renderServerList(serversListFiltered);
             }
-            else{
+            else {
                 renderServerNotFound(text);
             }
         }
-        else{
+        else {
             getServers();
         }
     })
-  });
+});
 
 
 
 
-function getServers(){
+function getServers() {
     let url = apiHost + '/api/all_servers';
     fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('La solicitud no fue exitosa');
-        }
-        return response.json();
-      })
-      .then(data => {
-        renderServerList(data.Servers);
-        serversList = data.Servers;
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        return showModalError(error);
-      });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('La solicitud no fue exitosa');
+            }
+            return response.json();
+        })
+        .then(data => {
+            renderServerList(data.Servers);
+            addListenerToSevers();
+            serversList = data.Servers;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            return showModalError(error);
+        });
 }
 
 
-function renderServerList(servers){
+function renderServerList(servers) {
     const serversContainer = document.getElementById('servers');
     emptyingElement(serversContainer);
     const fragTemp = document.createDocumentFragment();
     servers.forEach(server => {
-        console.log('nombre del sv: ',server.server_name);
+        console.log('nombre del sv: ', server.server_name);
         const aElement = document.createElement('a');
         aElement.innerHTML = `
                 <a href="#" class="server" id="${server.server_name}">
@@ -56,18 +59,93 @@ function renderServerList(servers){
                             crowdsource
                         </span>
                     </div>
-                    <h3>${server.server_name}</h3>
+                    <h3 id="${server.server_id}">${server.server_name}</h3>
                 </a>`;
         fragTemp.appendChild(aElement);
     });
     serversContainer.prepend(fragTemp);
 }
 
+//          MODAL JOIN SERVER
+
+function addListenerToSevers() {
+    const modalJoinServer = document.getElementById('modalJoinServer');
+    const modalText = document.getElementById('modalText');
+    const serversListElement = document.querySelectorAll('.server');
+    serversListElement.forEach(function (server) {
+        server.addEventListener("click", function () {
+            if (server) {
+                let h3Element = server.querySelector('h3');
+                var texto = h3Element.textContent;
+                modalText.textContent = `¿Quieres unirte a ${texto}?`
+                serverClickedData = [parseInt(h3Element.id), `${texto}`];
+                console.log('dataSave: ', serverClickedData);
+                modalJoinServer.showModal();
+            };
+        });
+    });
+};
+
+
+function registerInServer() {
+    let url = apiHost + '/api/join_server';
+    console.log(url);
+
+    // "user_id":1,
+    // "server_id":1
+
+    const data = {
+        'user_id': userId,
+        'server_id': serverClickedData[0]
+    };
+    console.log(data);
+
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    };
+
+    fetch(url, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('La solicitud no fue exitosa');
+            }
+            return response.json();
+        })
+        .then(response => {
+            if (response.error) {
+                // Maneja el error de la API
+                console.error('Error de la API:', response.error.description);
+                return showModalError(response.error.description);
+            } else {
+                // Procede con la lógica de la aplicación si la respuesta es exitosa
+                console.log('Respuesta de la API:', response);
+            }
+            window.location.href = host + '/templates/search_server/search_server.html'
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            return showModalError(error);
+        });
+
+};
+
+function addListenerToJoinModal() {
+    const btnJoinServer = document.getElementById('btn-join-server');
+    btnJoinServer.addEventListener('click', function (event) {
+        event.preventDefault();
+        registerInServer()
+    });
+}
 
 
 function filterServersByName(servers, name) {
     let listData = [];
-    for (let i=0; i<servers.length; i++) {
+    for (let i = 0; i < servers.length; i++) {
         console.log(servers[i]);
         if (servers[i].server_name.toLowerCase().includes(name)) {
             listData.push(servers[i]);
@@ -76,7 +154,7 @@ function filterServersByName(servers, name) {
     return listData;
 }
 
-function renderServerNotFound(name){
+function renderServerNotFound(name) {
     const serversContainer = document.getElementById('servers');
     emptyingElement(serversContainer);
     const divElement = document.createElement('div');
@@ -90,7 +168,7 @@ function renderServerNotFound(name){
 
 
 
-function emptyingElement(element){
+function emptyingElement(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
