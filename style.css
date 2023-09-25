@@ -60,13 +60,14 @@ img {
 }
 
 .side-bar {
-  height: 100vh;
+  max-height: 100vh;
   /* width: clamp(20%,7vh,7%); */
   width: 8vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: auto;
+
 }
 
 .tools {
@@ -75,6 +76,7 @@ img {
   height: 90%;
   justify-content: center;
   text-align: center;
+  overflow-y: auto;
 }
 
 .avatar-container {
@@ -83,9 +85,11 @@ img {
   align-items: center;
 }
 
+
 .my-server,
 .crear-server,
-.explorar-server {
+.explorar-server,
+.btn-new-channel {
   font-size: 80px !important;
   color: whitesmoke;
 }
@@ -125,6 +129,12 @@ img {
   align-items: center;
 }
 
+.server{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* CUADRO DE INFO */
 /* .drop-info {
   display: none;
@@ -144,6 +154,7 @@ img {
   display: block;
 }
 
+.server-channels ul a:hover,
 .servers a:hover,
 .tools a span:hover,
 [class^="chanel-"] a:hover {
@@ -169,7 +180,7 @@ img {
 
 
 /* SERVER CHANELS */
-.server-chanles{
+.server-channels{
   height: 100vh;
   width: 16vw;
   display: flex;
@@ -178,18 +189,27 @@ img {
   border-right: 1px solid rgba(83, 184, 152, 1);
 }
 
-.server-chanles div{
+.server-channels ul{
   margin: 10px 0;
   font-size: 1.5rem;
+  list-style-type: none;
 }
 
-.server-chanles div a{
+.server-channels ul li{
+  margin: 10px 0;
+}
+
+.server-channels ul a{
   text-decoration: none;
   color: whitesmoke;
 }
 
-.visible{
+.hidden{
   display: none;
+}
+
+.btn-new-channel{
+  cursor: pointer;
 }
 
 

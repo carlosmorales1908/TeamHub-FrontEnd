@@ -11,57 +11,72 @@
 </head>
 
 <body>
-    <div class="general-container">
-        <!-- MENU LATERAL -->
-    <div class="side-bar">
-        <!-- PARA MOSTRAR HERRAMIENTAS -->
-        <ul class="tools" id="servers-list">
-          <li>
-            <a href="#" class="new-server" id="create_server">
-              <span class="material-symbols-outlined crear-server" title="Crear servidor">
-                add_circle
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="material-symbols-outlined explorar-server" title="Explorar">
-                explore
-              </span>
-            </a>
-          </li>
-  
-        </ul>
-        <!-- PARA MOSTRAR USUARIO -->
-        <div class="user-card">
-          <div class="avatar">
-            <img src="../../assets/images/avatar_prueba.jpg" alt="john">
-          </div>
-          <div class="user-name"id="user-name"></div>
+    <body>
+        <div class="general-container">
+            <!-- MENU LATERAL -->
+            <div class="side-bar">
+                <!-- PARA MOSTRAR HERRAMIENTAS -->
+                <ul class="tools" id="servers-list">
+                    <li>
+                        <a href="#" class="new-server" id="create_server">
+                            <span class="material-symbols-outlined crear-server" title="Crear servidor">
+                                add_circle
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../search_server/search_server.html">
+                            <span class="material-symbols-outlined explorar-server" title="Explorar">
+                                explore
+                            </span>
+                        </a>
+                    </li>
+    
+                </ul>
+                <!-- PARA MOSTRAR USUARIO -->
+                <div class="user-card">
+                    <div class="avatar">
+                        <img src="../../assets/images/avatar_prueba.jpg" alt="john">
+                    </div>
+                    <div class="user-name" id="user-name"></div>
+                </div>
+            </div>
+    
+            <!-- SERVER CHANELS -->
+        <div class="server-channels hidden" id="channels-sidebar">
+            <div id="server-channels">
+
+            </div>
+            <div class="new-channel-container">
+                <span class="material-symbols-outlined btn-new-channel" title="Agregar canal" id="new-channel">
+                    add
+                </span>
+            </div>
         </div>
-      </div>
-  
-      <!-- MENU GENERAL -->
-      <div class="chat-container">
+            <!-- MENU GENERAL -->
+            <div class="servers-container" id="servers-container">
+                <div class="servers">
+                </div>
+                <div class="message">
+                    <h2>Aún no te has unido a un servidor</h2>
+                    <h2>Únete a uno o crea uno propio</h2>
+                </div>
+            </div>
+        </div>
+    
+    
+        <!-- MODAL NUEVO SERVER -->
+        <div id="newServerModalContainer"></div>
+        <!-- MODAL NUEVO CANAL -->
+        <div id="newChannelModalContainer"></div>
+        <!-- MODAL ERROR -->
+        <div id="errorModalContainer"></div>
+    
+    
         
-      </div>
-
-        <!-- SERVER CHANELS -->
-        <!-- <div class="server-chanles visible">
-            <div class="chanel-1">
-                <a href="#">CANAL 1</a>
-            </div>
-            <div class="chanel-2">
-                <a href="#">CANAL 2</a>
-            </div>
-            <div class="chanel-3">
-                <a href="#">CANAL 3</a>
-            </div>
-        </div> -->
-    </div>
-
-    <script src="../../script.js"></script>
-</body>
-
-</html>
+        <script src="../../script.js"></script>
+        <!-- <script src="./main.js"></script> -->
+    </body>
+    
+    </html>
 

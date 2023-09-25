@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let serversListFiltered = filterServersByName(serversList, text);
             if (serversListFiltered.length > 0) {
                 renderServerList(serversListFiltered);
+                addListenerToSevers();
             }
             else {
                 renderServerNotFound(text);
@@ -34,6 +35,7 @@ function getServers() {
             return response.json();
         })
         .then(data => {
+            console.log('se ejecuta getServers');
             renderServerList(data.Servers);
             addListenerToSevers();
             serversList = data.Servers;
@@ -91,15 +93,10 @@ function registerInServer() {
     let url = apiHost + '/api/join_server';
     console.log(url);
 
-    // "user_id":1,
-    // "server_id":1
-
     const data = {
         'user_id': userId,
         'server_id': serverClickedData[0]
     };
-    console.log(data);
-
 
     const requestOptions = {
         method: 'POST',
@@ -168,8 +165,8 @@ function renderServerNotFound(name) {
 
 
 
-function emptyingElement(element) {
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
-}
+// function emptyingElement(element) {
+//     while (element.firstChild) {
+//         element.removeChild(element.firstChild);
+//     }
+// }
