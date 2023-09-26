@@ -195,3 +195,21 @@ button:hover{
   margin: 5px;
   border-radius: 20px;
 }
+
+/* --------------------------- */
+figure input{
+  display: none;
+}
+
+figure {
+  display: flex;
+}
+
+figure label{
+  height: 50%;
+}
+figure label:hover{
+  cursor: pointer;
+}
+
+/* --------------------------- */

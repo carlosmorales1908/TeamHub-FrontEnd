@@ -1,8 +1,18 @@
-// const changePassword = document.querySelector(".change-password");
-// const cerrarModal = document.querySelector(".close-modal");
-// const form = document.querySelector(".user-form");
+const form = document.querySelector(".user-form");
 const modal = document.querySelector(".nuevo-modal");
 const errorMessage = document.querySelector(".error-message");
+
+// ------------------------------------------------------------
+const btnEditar = document.querySelectorAll(".btn-editar")
+const btnConfirmarCambios = document.querySelector(".send-data")
+const changePassword = document.querySelector(".change-password");
+const btnConfirmarPass = document.querySelector(".confirm-modal")
+const cerrarModal = document.querySelector(".cancel-modal");
+// ------------------------------------------------------------
+const file = document.getElementById("foto");
+const defaultImg = "../../assets/images/avatar_prueba.jpg"
+const userAvatar = document.querySelector(".user-avatar")
+// ------------------------------------------------------------
 
 const inputUserName = document.querySelector(".inp-user-name");
 const inputName = document.querySelector(".inp-name");
@@ -81,16 +91,19 @@ document.addEventListener("DOMContentLoaded", (e) => {
     });
 });
 
-document.addEventListener("click", (e) => {
-  // PERMITE EDITAR LOS DATOS DEL FORM
-  e.preventDefault();
-  if (e.target.matches(".btn-editar")) {
+// -----------------------------------------------------------------------------------------
+// PERMITE EDITAR LOS DATOS DEL FORM
+btnEditar.forEach(btn=>{
+  btn.addEventListener("click",e=>{
+    e.preventDefault()
     e.target.previousElementSibling.disabled = false;
-  }
+  })
+})
 
-  // MANDA LOS DATOS DEL FORM PARA EL UPDATE
-  if (e.target.matches(".send-data")) {
-    console.log("quisiste mandar data");
+// MANDA LOS DATOS DEL FORM PARA EL UPDATE
+form.addEventListener('submit',e=>{
+  e.preventDefault()
+  console.log("quisiste mandar data");
     getUserData()
       .then((data) => {
         const userID = data.user_id;
@@ -100,26 +113,47 @@ document.addEventListener("click", (e) => {
       .catch((error) => {
         console.log(error);
       });
-  }
+})
 
-  if (e.target.matches(".change-password")){
-    e.preventDefault()
-    errorMessage.classList.add("visible")
-    modal.showModal()
-  }
+// ABRE MODAL PARA CAMBIAR PASSWORD
+changePassword.addEventListener("click",e=>{
+  e.preventDefault()
+  errorMessage.classList.add("visible")
+  modal.showModal()
+})
 
-  if (e.target.matches(".confirm-modal")){
-    e.preventDefault()
+// CONFIRMA CAMBIO DE CONTRASEÑA
+btnConfirmarPass.addEventListener("click",e=>{
+  e.preventDefault()
     if (inputNewPass.value !== inputConfirmPass.value){
       errorMessage.classList.toggle("visible")
     } else {
       modal.close()
     }
-  }
+})
 
-  if (e.target.matches(".close-modal")){
-    modal.close()
-    inputNewPass.value = ""
-    inputConfirmPass.value =""
+// CIERRA EL MODAL DEL PASSWORD
+cerrarModal.addEventListener("click",e=>{
+  modal.close()
+  inputNewPass.value = ""
+  inputConfirmPass.value =""
+})
+
+// -----------------------------------------------------------------------------------------
+
+// PREVIEW DE LA FOTO DE PERFIL
+file.addEventListener("change",e=>{
+  if(e.target.files[0]){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      userAvatar.src = e.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0])
+  } else{
+    userAvatar.src = defaultImg
   }
-});
+})
+
+// TO DO: AGREGAR LA LOGICA PARA CONVERTIR LA IMAGEN A BLOB Y MANDARLA A LA BD
+
+// -----------------------------------------------------------------------------------------
