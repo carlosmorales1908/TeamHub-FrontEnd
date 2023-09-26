@@ -1,6 +1,6 @@
 //                VARIABLES GLOBALES
 const apiHost = 'http://127.0.0.1:5000'
-const host = 'http://127.0.0.1:5501/'
+const host = 'http://127.0.0.1:5501'
 const userName = document.getElementById('user-name');
 let userId;
 let idServerClicked;
@@ -96,6 +96,9 @@ function getChannels(serverId){
       }
       else{
         //renderNoChannels();
+        const channelsContainer = document.getElementById('server-channels');
+        emptyingElement(channelsContainer);
+        renderNoChannels();
         renderMainMessageText('Este servidor aún no tiene canales.');
         console.log('NO TIENE CANALES');
       }
@@ -247,7 +250,7 @@ function renderChannelList(channelList){
   channelList.forEach(channel => {
     const liElement = document.createElement('li');
     liElement.innerHTML = `
-        <li >
+        <li>
           <a href="#">#${channel.channel_name}</a>
         </li>`;
         fragTemp.appendChild(liElement);
@@ -263,8 +266,8 @@ function renderNoChannels(){
   // h2Element.innerHTML = 'Este servidor aún no tiene canales.';
   const liElement = document.createElement('li');
   liElement.innerHTML = `
-  <li >
-    <h2>Este servidor aún no tiene canales.</h2>
+  <li class="msg-server-empty">
+    <small>Este servidor aún no tiene canales.</small>
   </li>`;
   channelsContainer.appendChild(liElement);
 }

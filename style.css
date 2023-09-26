@@ -212,6 +212,11 @@ img {
   cursor: pointer;
 }
 
+.msg-server-empty{
+  padding: 10px;
+  color: whitesmoke;
+}
+
 
 /* MODAL */
 .new-modal {
