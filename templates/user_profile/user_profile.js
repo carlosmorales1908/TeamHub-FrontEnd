@@ -37,6 +37,7 @@ function getUserData() {
     });
 }
 
+// FUNCION PARA EL UPDATE
 function updateUser(user_id) {
   const url = `http://127.0.0.1:5000/api/users/${user_id}`;
   console.log(url);
@@ -52,6 +53,10 @@ function updateUser(user_id) {
     dataToSend.password = inputCurrentPass.value;
   } else if (inputNewPass.value === inputConfirmPass.value) {
     dataToSend.password = inputNewPass.value;
+  }
+
+  if (userAvatar.src !== defaultImg){
+    dataToSend.profile_picture = userAvatar.src
   }
 
   const requestOptions = {
