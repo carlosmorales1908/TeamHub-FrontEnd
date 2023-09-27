@@ -79,11 +79,13 @@ body{
 }
 
 a {
-  font-size: 1.2rem ;
+  font-size: 1.3rem ;
   color: whitesmoke;
+  text-decoration: none;
+  font-weight: bolder;
 }
 
 a:hover {
-  color: skyblue;
+  color: aquamarine;
   cursor: pointer;
 }

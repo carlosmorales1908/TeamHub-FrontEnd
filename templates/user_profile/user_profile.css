@@ -134,8 +134,14 @@ body{
   justify-content: center;
 }
 
-.change-pass-container a:hover{
+.change-pass-container a{
   color: whitesmoke;
+  text-decoration: none;
+}
+
+.change-pass-container a:hover{
+  cursor: pointer;
+  color: aquamarine;
 }
 
 .error-message{
@@ -220,14 +226,12 @@ figure label{
 }
 figure label:hover{
   cursor: pointer;
+  color: aquamarine;
 }
 
 /* --------------------------- */
 
 .logout{
-  position: absolute;
-  top: 0;
-  right: 15px;
   color: whitesmoke;
   text-decoration: none;
 }
@@ -236,3 +240,10 @@ figure label:hover{
   cursor: pointer;
   color: rgb(166, 222, 245);
 }
+
+.logout{
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+

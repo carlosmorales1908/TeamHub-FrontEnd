@@ -13,6 +13,8 @@ const file = document.getElementById("foto");
 const defaultImg = "../../assets/images/avatar_prueba.jpg"
 const userAvatar = document.querySelector(".user-avatar")
 // ------------------------------------------------------------
+const logout = document.querySelector(".logout")
+// ------------------------------------------------------------
 
 const inputUserName = document.querySelector(".inp-user-name");
 const inputName = document.querySelector(".inp-name");
@@ -159,6 +161,25 @@ file.addEventListener("change",e=>{
   }
 })
 
-// TO DO: AGREGAR LA LOGICA PARA CONVERTIR LA IMAGEN A BLOB Y MANDARLA A LA BD
+// -----------------------------------------------------------------------------------------
+
+// LOGOUT
+logout.addEventListener("click",e=>{
+  console.log("quisiste cerrar session")
+  const URL = `http://127.0.0.1:5000/auth/logout`;
+  fetch(URL, {
+    method: "GET",
+    credentials: "include",
+  })
+    .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+    .then((data) => {
+      window.location.href = "../login/login.html";
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  console.log("cerraste sesión")
+})
 
 // -----------------------------------------------------------------------------------------
