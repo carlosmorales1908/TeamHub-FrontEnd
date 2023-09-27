@@ -295,3 +295,58 @@ img {
 #errorMessage{
   color: #ffbc00;
 }
+
+
+
+/* .general-container{
+  background-color: black;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-container{
+  background-color: whitesmoke;
+  border-radius: 20px;
+  width: 90%;
+  height: 95%;
+  display: flexbox;
+  flex-direction: column;
+}
+
+.msgs-container{
+  width: 90%;
+  height: 88%;
+}
+.msg{
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.msg input{
+  width: 75%;
+  padding: 3px;
+}
+
+.msg button{
+  padding: 2px;
+  border-radius: 5px;
+  background-color: rgb(99, 223, 99);
+}
+
+.sended-msg{
+  width: 70%;
+  background-color: aquamarine;
+  border-radius: 20px;
+  padding: 7px;
+  margin: 10px 15px;
+}
+
+.msg button:hover{
+  cursor: pointer;
+  opacity: 0.8;
+} */

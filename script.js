@@ -4,10 +4,14 @@ const host = 'http://127.0.0.1:5501'
 const userName = document.getElementById('user-name');
 let userId;
 let idServerClicked;
-
+let channelClickedId;
 
 document.addEventListener('DOMContentLoaded', function () {
   getUserAuthenticated();
+  const btnChat = document.getElementById('send-button');
+  btnChat.addEventListener('click', function() {
+    createMessage();
+  })
 });
 
 
@@ -108,52 +112,6 @@ function getChannels(serverId){
     });
 }
 
-//  FUNCION PARA CREAR UN CANAL
-function createChannel(name, serverId){
-  let url = apiHost + '/api/channels';
-    console.log(url);
-
-    if(name != ""){
-      const data = {
-        'channel_name': name,
-        'server_id': serverId
-    };
-
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    };
-
-    fetch(url, requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('La solicitud no fue exitosa');
-            }
-            return response.json();
-        })
-        .then(response => {
-            if (response.error) {
-                // Maneja el error de la API
-                console.error('Error de la API:', response.error.description);
-                return showModalError(response.error.description);
-            } else {
-                // Procede con la lógica de la aplicación si la respuesta es exitosa
-                console.log('Respuesta de la API:', response);
-            }
-            window.location.href = host + '/templates/search_server/search_server.html'
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            return showModalError(error);
-        });
-    }
-    
-
-}
-
 //  FUNCION PARA CREAR UN SERVIDOR DESDE EL MODAL
 function createServer(){
   let url = apiHost + '/api/servers';
@@ -207,6 +165,99 @@ function createServer(){
   
 };
 
+//  FUNCION PARA CREAR UN CANAL
+function createChannel(name, serverId){
+  let url = apiHost + '/api/channels';
+    console.log(url);
+
+    if(name != ""){
+      const data = {
+        'channel_name': name,
+        'server_id': serverId
+    };
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    };
+
+    fetch(url, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('La solicitud no fue exitosa');
+            }
+            return response.json();
+        })
+        .then(response => {
+            if (response.error) {
+                // Maneja el error de la API
+                console.error('Error de la API:', response.error.description);
+                return showModalError(response.error.description);
+            } else {
+                // Procede con la lógica de la aplicación si la respuesta es exitosa
+                console.log('Respuesta de la API:', response);
+            }
+            window.location.href = host + '/templates/search_server/search_server.html'
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            return showModalError(error);
+        });
+    }
+}
+
+//  FUNCION PARA CREAR UN MENSAJE
+function createMessage(){
+  let url = apiHost + '/api/messages';
+  console.log(url);
+  const input = document.getElementById('message-input');
+  let msg = input.value;
+
+  if(msg != ""){
+    const data = {
+      'message': msg,
+      'channel_id': channelClickedId,
+      'user_id': userId
+  };
+  console.log(data);
+
+  const requestOptions = {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+  };
+
+  fetch(url, requestOptions)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('La solicitud no fue exitosa');
+          }
+          return response.json();
+      })
+      .then(response => {
+          if (response.error) {
+              // Maneja el error de la API
+              console.error('Error de la API:', response.error.description);
+              return showModalError(response.error.description);
+          } else {
+              // Procede con la lógica de la aplicación si la respuesta es exitosa
+              console.log('Respuesta de la API:', response);
+          }
+          //window.location.href = host + '/templates/search_server/search_server.html'
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          return showModalError(error);
+      });
+  }
+};
+
+
 
   
 
@@ -245,18 +296,51 @@ function renderSidebarServerList(servers){
 //         Renderiza la lista de canales de un servidor
 function renderChannelList(channelList){
   const channelsContainer = document.getElementById('server-channels');
+  const mainMessage = document.getElementById('mainMessage');
+  const chatContainer = document.getElementById('chat-container');
+
   emptyingElement(channelsContainer);
   const fragTemp = document.createDocumentFragment();
   channelList.forEach(channel => {
     const liElement = document.createElement('li');
     liElement.innerHTML = `
-        <li>
-          <a href="#">#${channel.channel_name}</a>
-        </li>`;
+          <a href="#" id="${channel.channel_id}">#${channel.channel_name}</a>`;
         fragTemp.appendChild(liElement);
+        const aElement = liElement.querySelector('a');
+        aElement.addEventListener('click', function (){
+          channelClickedId = channel.channel_id;
+          console.log('SE HIZO CLICK EN EL SERVER CON ID: ',channelClickedId);
+          mainMessage.classList.add('hidden');
+          //AQUI LLAMAR A LA API QUE TRAE LOS MENSAJES
+          chatContainer.classList.remove('hidden');
+          console.log(aElement.id);
+        })
+        
   });
   channelsContainer.prepend(fragTemp);
   
+}
+
+//  Renderiza los mensajes
+function renderMessages(messages){
+  const fragTemp = document.createDocumentFragment();
+  messages.forEach(message => {
+    const divElement = document.createElement('div');
+    divElement.innerHTML = `
+        <div class="avatar">
+            <img src="" alt="user-avatar">
+        </div>
+        <div class="msg-header">
+            <h4>${message.user_name}</h4>
+            <h4>${message.creation_date}</h4>
+        </div>
+        <div class="msg-body">
+            <p>${message.message}</p>
+        </div>`;
+    fragTemp.appendChild(divElement);
+  });
+  const chatMessages = document.getElementById('chat-messages');
+  chatMessages.appendChild(fragTemp);
 }
 
 function renderNoChannels(){
@@ -390,3 +474,33 @@ function emptyingElement(element) {
   }
 }
 
+
+/*
+const msgInput = document.querySelector(".msg-input");
+const msgContainer = document.querySelector(".msgs-container");
+
+btnSendMsg = document.querySelector(".send-msg");
+btnSendMsg.addEventListener("click",e=>{
+  let msg = msgInput.value;
+  if (msg != ""){
+    const msg = document.createElement("div");
+    msg.classList.add("sended-msg");
+    msg.textContent = msg;
+    msgContainer.append(msg);
+    msgInput.value = "";
+  }
+})
+
+msgInput.addEventListener("keyup",e=>{
+  if (e.key === "Enter"){
+    let msg = msgInput.value;
+    if (msg != ""){
+      const msg = document.createElement("div");
+      msg.classList.add("sended-msg");
+      msg.textContent = msg;
+      msgContainer.append(msg);
+      msgInput.value = "";
+    }
+  }
+})
+*/
