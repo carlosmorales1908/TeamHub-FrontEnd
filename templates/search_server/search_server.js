@@ -1,7 +1,8 @@
 let serversList;
 let serverClickedData;
 document.addEventListener('DOMContentLoaded', function () {
-    getServers();
+    
+    //setTimeout(getServers(), 5000);
     addListenerToJoinModal();
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('keyup', function () {
@@ -28,12 +29,14 @@ document.addEventListener('DOMContentLoaded', function () {
 function getServers() {
     let url = apiHost + '/api/all_servers';
     fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('La solicitud no fue exitosa');
-            }
-            return response.json();
-        })
+        .then(res=>res.ok?res.json():Promise.reject(res))
+        
+        // .then(response => {
+        //     if (!response.ok) {
+        //         throw new Error('La solicitud no fue exitosa');
+        //     }
+        //     return response.json();
+        // })
         .then(data => {
             console.log('se ejecuta getServers');
             renderServerList(data.Servers);
