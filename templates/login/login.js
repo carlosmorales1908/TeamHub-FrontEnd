@@ -1,7 +1,7 @@
 const d = document,
 $form = d.querySelector(".login-form"),
 $btnData = d.querySelector(".get-data")
-// $inputs = d.querySelectorAll(".login-form input")
+$inputs = d.querySelectorAll(".login-form input")
 
 // --------------------------------------------------------
 const createAccount = d.querySelector(".create-account")
@@ -36,9 +36,17 @@ function login(name,password){
         console.log(data)
       })
     }
+
+    if (response.status===401){
+      document.getElementById("message").innerHTML = "Usuario o Contraseña incorrectos"
+      const $formData = new FormData($form)
+      $inputs.forEach(input=>{
+        input.value = ""
+      })
+    }
   })
   .catch(error => {
-    document.getElementById("message").innerHTML = "An error occurred.";
+    conosle.log(error)
   });
 }
 
