@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   getUserAuthenticated();
   const userCard = document.getElementById('user-card');
   userCard.addEventListener('click', function(){
-    console.log('se clickeo en perfil');
-    //window.location.href = host + '/templates/user_profile/user_profile.html'
+    window.location.href = host + '/templates/user_profile/user_profile.html'
   });
   const btnChat = document.getElementById('send-button');
   btnChat.addEventListener('click', function() {
