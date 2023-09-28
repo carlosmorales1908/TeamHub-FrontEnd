@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../search_server/search_server.html">
+                        <a href="#" id="explore_servers">
                             <span class="material-symbols-outlined explorar-server" title="Explorar">
                                 explore
                             </span>
@@ -65,11 +65,17 @@
         </div>
         <!-- MENU GENERAL -->
         <div class="servers-container" id="servers-container">
-            <div class="servers" id="servers"></div>
+            
+            <div class="hidden" id="explore-servers-container">
+                <input type="text" class="search-bar" name="search-bar" id="search-bar" placeholder="Buscar Servidor...">
+                <div class="servers" id="servers"></div>
+            </div>
+            
             <div class="main-message" id="mainMessage">
                 <h2>Aún no te has unido a un servidor</h2>
                 <h2>Únete a uno o crea uno propio</h2>
             </div>
+
             <div class="chat-container hidden" id="chat-container">
                 <div class="chat-messages" id="chat-messages">
                     <!-- Aquí se renderizarán los mensajes -->
@@ -79,11 +85,24 @@
                     <button id="send-button">Enviar</button>
                 </div>
             </div>
+
         </div>
     </div>
     </div>
 
 
+    <!-- MODAL JOIN SERVER -->
+    <dialog class="new-modal" id="modalJoinServer">
+        <div class="modal-container">
+          <h3>Unirse a un servidor</h3>
+          <form action="#" id="form-register-in-server">
+            <br>
+            <p id="modalText"></p>
+            <button type="submit" class="btn-form-ns" id="btn-join-server">Unirse</button>
+            <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
+          </form>
+        </div>
+      </dialog>
     <!-- MODAL NUEVO SERVER -->
     <div id="newServerModalContainer"></div>
     <!-- MODAL NUEVO CANAL -->

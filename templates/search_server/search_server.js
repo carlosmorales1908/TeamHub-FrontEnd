@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+//copiada
 function getServers() {
     let url = apiHost + '/api/all_servers';
     fetch(url)
@@ -49,7 +49,7 @@ function getServers() {
         });
 }
 
-
+//COPIADA
 function renderServerList(servers) {
     const serversContainer = document.getElementById('servers');
     emptyingElement(serversContainer);
@@ -73,7 +73,7 @@ function renderServerList(servers) {
 }
 
 //          MODAL JOIN SERVER
-
+//COIPADA
 function addListenerToSevers() {
     const modalJoinServer = document.getElementById('modalJoinServer');
     const modalText = document.getElementById('modalText');
@@ -92,7 +92,7 @@ function addListenerToSevers() {
     });
 };
 
-
+//COPIADO
 function registerInServer() {
     let url = apiHost + '/api/join_server';
     console.log(url);
@@ -168,9 +168,3 @@ function renderServerNotFound(name) {
 }
 
 
-
-// function emptyingElement(element) {
-//     while (element.firstChild) {
-//         element.removeChild(element.firstChild);
-//     }
-// }
