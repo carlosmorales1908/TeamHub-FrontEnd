@@ -361,8 +361,12 @@ function renderMessages(messages){
     const divElement = document.createElement('div');
     divElement.id = message.user_id;
     const creationDate = new Date(message.creation_date);
+    let minutes = creationDate.getMinutes();
+    if(minutes<10){
+      minutes = `0${minutes}`;
+    }
     const creationDateFormated = `${creationDate.getDate()}/${creationDate.getMonth() + 1}/${creationDate.getFullYear()} - 
-    ${creationDate.getHours()}:${creationDate.getMinutes()}`;
+    ${creationDate.getHours()}:${minutes}`;
     divElement.innerHTML = `
         <div class="msg-header">
             <h4 id="${message.message_id}">${message.user_name}</h4>
@@ -377,11 +381,12 @@ function renderMessages(messages){
       }
       else{
         console.log('No autorizados');
+        showModalError('Solo puedes modificar tus mensajes.');
       };
       
     })
-    //fragTemp.appendChild(divElement);
-    fragTemp.prepend(divElement);
+    fragTemp.appendChild(divElement);
+    //fragTemp.prepend(divElement);
   });
   const chatMessages = document.getElementById('chat-messages');
   chatMessages.appendChild(fragTemp);
