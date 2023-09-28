@@ -265,10 +265,10 @@ img {
                                   /***************/
                                   /* MODAL ERROR */
                                   /***************/
-#errorTitle{
+/* #errorTitle{
   
   
-}
+} */
 #errorMessage{
   color: #ffbc00;
 }
