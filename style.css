@@ -101,6 +101,7 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .user-card .avatar img {
@@ -162,7 +163,7 @@ img {
 }
 
 
-.message{
+.main-message{
   color: whitesmoke;
   display: flex;
   flex-direction: column;
@@ -300,7 +301,10 @@ img {
 
 /* Estilos para el contenedor de chat */
 .chat-container {
-  max-width: 400px;
+  /* max-width: 400px; */
+  min-width: 63rem;
+  max-width: 70rem;
+  height: 40rem;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -310,7 +314,7 @@ img {
 
 /* Estilos para el área de mensajes */
 .chat-messages {
-  height: 300px;
+  height: 35rem;
   overflow-y: scroll;
   border: 1px solid #ddd;
   padding: 10px;
@@ -333,57 +337,23 @@ img {
   cursor: pointer;
 }
 
-
-
-/* .general-container{
-  background-color: black;
-  width: 50%;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.chat-container{
+.message{
   background-color: whitesmoke;
-  border-radius: 20px;
-  width: 90%;
-  height: 95%;
-  display: flexbox;
-  flex-direction: column;
-}
-
-.msgs-container{
-  width: 90%;
-  height: 88%;
-}
-.msg{
-  position: sticky;
-  bottom: 0;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  padding: 0 .3rem ;
+  margin: .3rem 0;
 }
 
-.msg input{
-  width: 75%;
-  padding: 3px;
+.msg-header{
+  display: flex;
+  justify-content: space-between;
 }
 
-.msg button{
-  padding: 2px;
-  border-radius: 5px;
-  background-color: rgb(99, 223, 99);
+.msg-body{
+  padding-left: .4rem ;
 }
 
-.sended-msg{
-  width: 70%;
-  background-color: aquamarine;
-  border-radius: 20px;
-  padding: 7px;
-  margin: 10px 15px;
+.my-msg{
+  background-color: red;
 }
-
-.msg button:hover{
-  cursor: pointer;
-  opacity: 0.8;
-} */

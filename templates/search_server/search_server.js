@@ -65,7 +65,7 @@ function renderServerList(servers) {
                         </span>
                     </div>
                     <h3 id="${server.server_id}">${server.server_name}</h3>
-                    <h3>${server.total_users}</h3>
+                    <h3>Usuarios: ${server.total_users}</h3>
                 </a>`;
         fragTemp.appendChild(aElement);
     });

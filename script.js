@@ -8,6 +8,11 @@ let channelClickedId;
 
 document.addEventListener('DOMContentLoaded', function () {
   getUserAuthenticated();
+  const userCard = document.getElementById('user-card');
+  userCard.addEventListener('click', function(){
+    console.log('se clickeo en perfil');
+    //window.location.href = host + '/templates/user_profile/user_profile.html'
+  });
   const btnChat = document.getElementById('send-button');
   btnChat.addEventListener('click', function() {
     createMessage();
@@ -230,7 +235,7 @@ function createChannel(name, serverId){
                 // Procede con la lógica de la aplicación si la respuesta es exitosa
                 console.log('Respuesta de la API:', response);
             }
-            window.location.href = host + '/templates/search_server/search_server.html'
+            //window.location.href = host + '/templates/search_server/search_server.html'
         })
         .catch(error => {
             console.error('Error:', error);
@@ -325,7 +330,6 @@ function renderSidebarServerList(servers){
       userServers.prepend(fragTemp);
 }
 
-
 //         Renderiza la lista de canales de un servidor
 function renderChannelList(channelList){
   const channelsContainer = document.getElementById('server-channels');
@@ -354,11 +358,12 @@ function renderChannelList(channelList){
   
 }
 
-//  Renderiza los mensajes
+//         Renderiza los mensajes de un canal
 function renderMessages(messages){
   const fragTemp = document.createDocumentFragment();
   messages.forEach(message => {
     const divElement = document.createElement('div');
+    divElement.classList.add('message');
     divElement.id = message.user_id;
     const creationDate = new Date(message.creation_date);
     let minutes = creationDate.getMinutes();
@@ -406,6 +411,7 @@ function renderNoChannels(){
   channelsContainer.appendChild(liElement);
 }
 
+//          Renderiza un mensaje en el mainMessage
 function renderMainMessageText(message){
   const mainMessage = document.getElementById('mainMessage');
   emptyingElement(mainMessage);
@@ -480,7 +486,7 @@ function showModalNewChannel(){
     });
 };
 
-//            MODAL PARA EDITAR UN MENSAJE
+//            MODAL PARA EDITAR O ELIMINAR UN MENSAJE
 function showModalEditMessage(){
   const modalContainer = document.getElementById('editMessageModalContainer');
   const modalHTML = `
@@ -498,7 +504,14 @@ function showModalEditMessage(){
     modalContainer.innerHTML = modalHTML;
     const modalEditMessage = document.getElementById('modalEditMessage');
     modalEditMessage.showModal();
-    // const btnCreateChannel = document.getElementById('btn-create-channel');
+    const btnUpdateMsg = document.getElementById('btn-update-message');
+    btnUpdateMsg.addEventListener('click', function(event){
+      console.log('id del sv clickeado: ',idServerClicked);
+      event.preventDefault();
+      const inputEntry = document.getElementById('message');
+      console.log(inputEntry.value);
+      
+    });
     // btnCreateChannel.addEventListener('click', function(event){
     //   console.log('id del sv clickeado: ',idServerClicked);
     //   event.preventDefault();
@@ -507,7 +520,7 @@ function showModalEditMessage(){
     // });
 };
 
-//            MODAL ERROR
+//            MODAL PARA MOSTRAR UN ERROR
 function showModalError(message) {
   const modalContainer = document.getElementById('errorModalContainer');
   const modalHTML= `
