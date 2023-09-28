@@ -3,6 +3,9 @@ $form = d.querySelector(".login-form"),
 $btnData = d.querySelector(".get-data")
 // $inputs = d.querySelectorAll(".login-form input")
 
+// --------------------------------------------------------
+const createAccount = d.querySelector(".create-account")
+// --------------------------------------------------------
 
 $form.addEventListener("submit",e=>{
   e.preventDefault()
@@ -38,3 +41,9 @@ function login(name,password){
     document.getElementById("message").innerHTML = "An error occurred.";
   });
 }
+
+// --------------------------------------------------------
+createAccount.addEventListener("click",e=>{
+  window.location.href = "../register/register.html"
+})
+// --------------------------------------------------------
