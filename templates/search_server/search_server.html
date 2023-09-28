@@ -50,17 +50,26 @@
 
       </ul>
       <div class="new-channel-container">
-          <span class="material-symbols-outlined btn-new-channel" title="Agregar canal" id="new-channel">
-            add_circle
-          </span>
+        <span class="material-symbols-outlined btn-new-channel" title="Agregar canal" id="new-channel">
+          add_circle
+        </span>
       </div>
-  </div>
+    </div>
 
     <!-- MENU GENERAL -->
     <div class="servers-container">
       <input type="text" class="search-bar" name="search-bar" id="search-bar" placeholder="Buscar Servidor...">
       <div class="servers" id="servers"></div>
       <div class="message" id="mainMessage"></div>
+      <div class="chat-container hidden" id="chat-container">
+        <div class="chat-messages" id="chat-messages">
+          <!-- Aquí se renderizarán los mensajes -->
+        </div>
+        <div class="chat-input">
+          <input type="text" id="message-input" placeholder="Escribe un mensaje..." autocomplete="off">
+          <button id="send-button">Enviar</button>
+        </div>
+      </div>
     </div>
 
 
@@ -86,7 +95,7 @@
 
     <script src="../../script.js"></script>
     <script defer src="search_server.js"></script>
-   
+
 </body>
 
 </html>
@@ -94,10 +103,10 @@
 
 <div class="general-container hidden">
   <div class="chat-container">
-      <div class="msgs-container"></div>
-      <div class="msg">
-          <input class="msg-input" type="text" name="msg">
-          <button class="send-msg">ENVIAR</button>
-      </div>
+    <div class="msgs-container"></div>
+    <div class="msg">
+      <input class="msg-input" type="text" name="msg">
+      <button class="send-msg">ENVIAR</button>
+    </div>
   </div>
 </div>

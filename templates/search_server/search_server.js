@@ -2,7 +2,7 @@ let serversList;
 let serverClickedData;
 document.addEventListener('DOMContentLoaded', function () {
     
-    //setTimeout(getServers(), 5000);
+    setTimeout(getServers(), 20000);
     addListenerToJoinModal();
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('keyup', function () {

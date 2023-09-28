@@ -298,6 +298,43 @@ img {
 
 
 
+/* Estilos para el contenedor de chat */
+.chat-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el área de mensajes */
+.chat-messages {
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para el área de entrada de mensajes */
+.chat-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Estilos para el botón de envío */
+#send-button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
 /* .general-container{
   background-color: black;
   width: 50%;

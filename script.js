@@ -67,6 +67,7 @@ function getUserAuthenticated(){
 
 // Obtenemos los servidores del usuario que inica sesión
 function getUserServers() {
+  console.log('se ejecuta getUserServers');
   const url = apiHost + '/api/user_server/' + userId;
   fetch(url, {
     method: "GET",
@@ -75,10 +76,15 @@ function getUserServers() {
     .then(res=>res.ok?res.json():Promise.reject(res))
     .then((data) => {
       // Inserta de manera dinámica los servidores en el DOM
-      
+      if(data.hasOwnProperty('error')){
+        console.log(data.error);
+        showModalError(data.error.description);
+      }
+      else{
+        renderSidebarServerList(data.Servers);
+      }
       console.log(data)
-      console.log('se ejecuta getUserServers');
-      renderSidebarServerList(data.Servers);
+      
     })
     .catch((error) => {
       console.log(error);
@@ -111,6 +117,30 @@ function getChannels(serverId){
       console.log(error);
     });
 }
+
+//OBTENER LOS MENSAJES DE UN CANAL
+function getMessages(channelId){
+  const url = apiHost + '/api/channels/' + channelId;
+  fetch(url, {
+    method: "GET",
+    credentials: "include",
+  })
+    .then(res=>res.ok?res.json():Promise.reject(res))
+    .then((data) => {
+      console.log(data);
+      const messagesContainer = document.getElementById('chat-messages');
+      emptyingElement(messagesContainer);
+      if(data.hasOwnProperty('messages')){
+        renderMessages(data.messages);
+      }
+      else{
+        console.log('NO TIENE mensajes');
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 //  FUNCION PARA CREAR UN SERVIDOR DESDE EL MODAL
 function createServer(){
@@ -207,7 +237,7 @@ function createChannel(name, serverId){
             return showModalError(error);
         });
     }
-}
+};
 
 //  FUNCION PARA CREAR UN MENSAJE
 function createMessage(){
@@ -245,6 +275,9 @@ function createMessage(){
               console.error('Error de la API:', response.error.description);
               return showModalError(response.error.description);
           } else {
+            const inputEntry = document.getElementById('message-input');
+            inputEntry.value = "";
+            getMessages(channelClickedId);
               // Procede con la lógica de la aplicación si la respuesta es exitosa
               console.log('Respuesta de la API:', response);
           }
@@ -311,7 +344,7 @@ function renderChannelList(channelList){
           channelClickedId = channel.channel_id;
           console.log('SE HIZO CLICK EN EL SERVER CON ID: ',channelClickedId);
           mainMessage.classList.add('hidden');
-          //AQUI LLAMAR A LA API QUE TRAE LOS MENSAJES
+          getMessages(channelClickedId);
           chatContainer.classList.remove('hidden');
           console.log(aElement.id);
         })
@@ -326,21 +359,32 @@ function renderMessages(messages){
   const fragTemp = document.createDocumentFragment();
   messages.forEach(message => {
     const divElement = document.createElement('div');
+    divElement.id = message.user_id;
+    const creationDate = new Date(message.creation_date);
+    const creationDateFormated = `${creationDate.getDate()}/${creationDate.getMonth() + 1}/${creationDate.getFullYear()} - 
+    ${creationDate.getHours()}:${creationDate.getMinutes()}`;
     divElement.innerHTML = `
-        <div class="avatar">
-            <img src="" alt="user-avatar">
-        </div>
         <div class="msg-header">
-            <h4>${message.user_name}</h4>
-            <h4>${message.creation_date}</h4>
+            <h4 id="${message.message_id}">${message.user_name}</h4>
+            <h4>${creationDateFormated}</h4>
         </div>
         <div class="msg-body">
             <p>${message.message}</p>
         </div>`;
+    divElement.addEventListener('click', function(){
+      if(userId == message.user_id){
+        showModalEditMessage();
+      }
+      else{
+        console.log('No autorizados');
+      };
+      
+    })
     fragTemp.appendChild(divElement);
   });
   const chatMessages = document.getElementById('chat-messages');
   chatMessages.appendChild(fragTemp);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 function renderNoChannels(){
@@ -430,6 +474,32 @@ function showModalNewChannel(){
     });
 };
 
+//            MODAL PARA EDITAR UN MENSAJE
+function showModalEditMessage(){
+  const modalContainer = document.getElementById('editMessageModalContainer');
+  const modalHTML = `
+    <dialog class="new-modal" id="modalEditMessage">
+      <div class="modal-container">
+          <h3>Mensaje</h3>
+          <form id="form-message" action="#">
+              <textarea id="message" name="message" rows="4" cols="50"></textarea>
+              <button id="btn-update-message" type="submit" class="btn-form-ns">Guardar</button>
+              <button id="btn-delete-message" type="submit" class="btn-form-ns">Eliminar</button>
+              <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
+          </form>
+      </div>
+    </dialog>`;
+    modalContainer.innerHTML = modalHTML;
+    const modalEditMessage = document.getElementById('modalEditMessage');
+    modalEditMessage.showModal();
+    // const btnCreateChannel = document.getElementById('btn-create-channel');
+    // btnCreateChannel.addEventListener('click', function(event){
+    //   console.log('id del sv clickeado: ',idServerClicked);
+    //   event.preventDefault();
+    //   const inputName = document.getElementById('channel_name');
+    //   createChannel(inputName.value, idServerClicked);
+    // });
+};
 
 //            MODAL ERROR
 function showModalError(message) {
@@ -474,33 +544,3 @@ function emptyingElement(element) {
   }
 }
 
-
-/*
-const msgInput = document.querySelector(".msg-input");
-const msgContainer = document.querySelector(".msgs-container");
-
-btnSendMsg = document.querySelector(".send-msg");
-btnSendMsg.addEventListener("click",e=>{
-  let msg = msgInput.value;
-  if (msg != ""){
-    const msg = document.createElement("div");
-    msg.classList.add("sended-msg");
-    msg.textContent = msg;
-    msgContainer.append(msg);
-    msgInput.value = "";
-  }
-})
-
-msgInput.addEventListener("keyup",e=>{
-  if (e.key === "Enter"){
-    let msg = msgInput.value;
-    if (msg != ""){
-      const msg = document.createElement("div");
-      msg.classList.add("sended-msg");
-      msg.textContent = msg;
-      msgContainer.append(msg);
-      msgInput.value = "";
-    }
-  }
-})
-*/
