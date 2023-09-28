@@ -380,7 +380,8 @@ function renderMessages(messages){
       };
       
     })
-    fragTemp.appendChild(divElement);
+    //fragTemp.appendChild(divElement);
+    fragTemp.prepend(divElement);
   });
   const chatMessages = document.getElementById('chat-messages');
   chatMessages.appendChild(fragTemp);
