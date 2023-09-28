@@ -1,16 +1,16 @@
-const form = document.querySelector(".my-form")
+const form = document.querySelector(".my-form");
 
-form.addEventListener('submit', e=>{
-  e.preventDefault()
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
   const formData = new FormData(form),
     name = formData.get("name"),
     lName = formData.get("lname"),
     email = formData.get("email"),
     userName = formData.get("user_name"),
     password = formData.get("password"),
-    dob = formData.get("dob")
+    dob = formData.get("dob");
 
-  const url = 'http://127.0.0.1:5000/api/users';
+  const url = "http://127.0.0.1:5000/api/users";
   console.log(url);
 
   const dataToSend = {
@@ -19,24 +19,28 @@ form.addEventListener('submit', e=>{
     email: email,
     user_name: userName,
     password: password,
-    date_of_birth: dob
+    date_of_birth: dob,
   };
 
   const requestOptions = {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify(dataToSend),
     headers: {
-      'Content-Type': 'application/json',
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   fetch(url, requestOptions)
-    .then(res=>res.ok?res.json():Promise.reject(res))
-    .then(data => {
-      window.location.href = "../login/login.html";
-      console.log(data);
+    .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+    .then((data) => {
+      if (data.error){
+        document.getElementById("message").innerHTML = `${data.error.description}`
+      } else{
+        window.location.href = "../login/login.html";
+        // console.log(data);
+      }
     })
-    .catch(error => {
-      console.error('Error:', error);
+    .catch((error) => {
+      console.log("Error:", error);
     });
-})
+});

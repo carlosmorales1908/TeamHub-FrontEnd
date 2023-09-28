@@ -1,6 +1,6 @@
 const d = document,
 $form = d.querySelector(".login-form"),
-$btnData = d.querySelector(".get-data")
+$btnData = d.querySelector(".get-data"),
 $inputs = d.querySelectorAll(".login-form input")
 
 // --------------------------------------------------------
@@ -39,7 +39,7 @@ function login(name,password){
 
     if (response.status===401){
       document.getElementById("message").innerHTML = "Usuario o Contraseña incorrectos"
-      const $formData = new FormData($form)
+      // const $formData = new FormData($form)
       $inputs.forEach(input=>{
         input.value = ""
       })
