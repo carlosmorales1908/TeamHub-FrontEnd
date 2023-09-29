@@ -470,6 +470,7 @@ function renderSidebarServerList(servers){
   const fragTemp = document.createDocumentFragment();
       servers.forEach(server=>{
         const liElement = document.createElement("li");
+        liElement.setAttribute('data-user-rol',server.rol);
         liElement.innerHTML=`
         <a href="#" >
             <span class="material-symbols-outlined my-server crear-server" title=${server.server_name} id=${server.server_id}>
@@ -479,6 +480,13 @@ function renderSidebarServerList(servers){
         <small class="server_name">${server.server_name}</small>
         `;
         liElement.addEventListener('click', function (event) {
+          const btnAddChannel = document.getElementById('new-channel-container');
+          if(server.rol != 'Admin'){
+            btnAddChannel.classList.add('hidden');
+          }
+          else{
+            btnAddChannel.classList.remove('hidden');
+          }
           idServerClicked = server.server_id;
           channelClickedId = null;
           clearInterval(intervaloID);
