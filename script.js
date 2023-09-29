@@ -811,7 +811,7 @@ function renderServerNotFound(name) {
   const serversContainer = document.getElementById('servers');
   emptyingElement(serversContainer);
   const divElement = document.createElement('div');
-  divElement.classList.add('message')
+  divElement.classList.add('message-no-found');
   divElement.innerHTML = `
           <h2>No se ha encontrado el servidor con el nombre: "${name}"</h2>
           <h2>Prueba con otro nombre</h2>

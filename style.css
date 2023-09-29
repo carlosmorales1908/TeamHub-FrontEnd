@@ -314,12 +314,11 @@ img {
 }
 
 .message{
-  color: whitesmoke;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   padding: 0 .3rem ;
   margin: .3rem 0;
-  align-items: center;
 }
 
 .msg-header{
@@ -398,4 +397,13 @@ img {
 
 #servers-list li:hover{
   color: rgb(135, 230, 200) ;
+}
+
+.message-no-found{
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  padding: 0 .3rem ;
+  margin: .3rem 0;
+  align-items: center;
 }
