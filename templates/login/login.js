@@ -1,7 +1,7 @@
 const d = document,
 $form = d.querySelector(".login-form"),
-$btnData = d.querySelector(".get-data")
-// $inputs = d.querySelectorAll(".login-form input")
+$btnData = d.querySelector(".get-data"),
+$inputs = d.querySelectorAll(".login-form input")
 
 // --------------------------------------------------------
 const createAccount = d.querySelector(".create-account")
@@ -36,14 +36,39 @@ function login(name,password){
         console.log(data)
       })
     }
+
+    if (response.status===401){
+      document.getElementById("message").innerHTML = "Usuario o Contraseña incorrectos"
+      // const $formData = new FormData($form)
+      $inputs.forEach(input=>{
+        input.value = ""
+      })
+    }
   })
   .catch(error => {
-    document.getElementById("message").innerHTML = "An error occurred.";
+    conosle.log(error)
   });
 }
 
 // --------------------------------------------------------
 createAccount.addEventListener("click",e=>{
   window.location.href = "../register/register.html"
+})
+// --------------------------------------------------------
+
+
+// --------------------------------------------------------
+// INVITACION AL SERVIDOR
+const invitation = document.getElementById("invitation")
+invitation.addEventListener("click",e=>{
+  const path = "https://www.google.com/"
+  const text = "Te invito a unirte al servidor: " + path
+  const areaInvitation = document.createElement("textarea");
+  areaInvitation.value = text;
+  document.body.appendChild(areaInvitation)
+  areaInvitation.select();
+  navigator.clipboard.writeText(areaInvitation.value)
+  document.body.removeChild(areaInvitation);
+  alert("Invitación copiada.");
 })
 // --------------------------------------------------------
