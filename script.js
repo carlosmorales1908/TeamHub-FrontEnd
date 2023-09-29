@@ -157,7 +157,7 @@ function getChannels(serverId){
 
 //        OBTENER LOS MENSAJES DE UN CANAL
 function getMessages(){
-  const url = apiHost + '/api/channels/' + channelId;
+  const url = apiHost + '/api/channels/' + channelClickedId;
   fetch(url, {
     method: "GET",
     credentials: "include",
@@ -173,7 +173,6 @@ function getMessages(){
       else{
         console.log('NO TIENE mensajes');
       }
-      iniciarIntervalo();
     })
     .catch((error) => {
       console.log(error);
@@ -494,6 +493,7 @@ function renderSidebarServerList(servers){
           idServerClicked = server.server_id;
           channelClickedId = null;
           clearInterval(intervaloID);
+          console.log('SE DETIENE EL BUCLE');
           showContainer('main');
           const channelsSidebar = document.getElementById('channels-sidebar');
           channelsSidebar.classList.remove('hidden');
@@ -523,6 +523,9 @@ function renderChannelList(channelList){
           channelClickedId = channel.channel_id;
           console.log('SE HIZO CLICK EN EL SERVER CON ID: ',channelClickedId);
           clearInterval(intervaloID);
+          console.log('SE DETIENE EL BUCLE');
+          iniciarIntervalo();
+          console.log('SE INICIO UN NUEVO BUCLE');
           getMessages();
           showContainer('chat');
           console.log(aElement.id);
@@ -825,11 +828,12 @@ function renderServerNotFound(name) {
 }
 
 function iniciarIntervalo() {
+  //PARA DETENER USAR: clearInterval(intervaloID);
   // Establece el intervalo de tiempo en milisegundos (en este caso, 3 segundos)
-  const intervalo = 5000; // 3000 milisegundos = 3 segundos
+  const intervalo = 4000; // 3000 milisegundos = 3 segundos
 
   // Inicia el intervalo y almacena el ID del intervalo
-  intervaloID = setInterval(getTotalMsg, intervalo);
+  intervaloID = setInterval(getMessages, intervalo);
 
   // Puedes devolver el ID del intervalo si deseas detenerlo posteriormente desde otro lugar
   return intervaloID;
