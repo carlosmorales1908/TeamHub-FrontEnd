@@ -172,6 +172,7 @@ function getMessages(){
       }
       else{
         console.log('NO TIENE mensajes');
+        renderNoMessages();
       }
     })
     .catch((error) => {
@@ -535,6 +536,20 @@ function renderChannelList(channelList){
   channelsContainer.prepend(fragTemp);
   
 }
+
+// Renderiza la un mensaje en el chat indicando que aun no hay mensajes
+function renderNoMessages(){
+  const divElement = document.createElement('div');
+  divElement.classList.add('message');
+  divElement.innerHTML = `
+        <div>
+            <h4 style="text-align: center;">Aún no hay mensajes en este canal.</h4>
+        </div>`;
+  const chatMessages = document.getElementById('chat-messages');
+  chatMessages.appendChild(divElement);
+}
+
+
 
 //         Renderiza los mensajes de un canal
 function renderMessages(messages){
