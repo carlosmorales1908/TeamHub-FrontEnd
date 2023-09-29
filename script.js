@@ -145,7 +145,7 @@ function getChannels(serverId){
         const channelsContainer = document.getElementById('server-channels');
         emptyingElement(channelsContainer);
         renderNoChannels();
-        renderMainMessageText('Este servidor aún no tiene canales.');
+        renderMainMessageText('Si eres el administrador, puedes crear un canal, en caso contrario deberás pedirle al creador del servidor que lo haga.');
         console.log('NO TIENE CANALES');
       }
     })
