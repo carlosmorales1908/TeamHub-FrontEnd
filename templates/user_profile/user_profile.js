@@ -72,7 +72,7 @@ function updateUser(user_id) {
   fetch(url, requestOptions)
     .then((res) => (res.ok ? res.json() : Promise.reject(res)))
     .then((data) => {
-      window.location.href = "../main/main.html";
+      window.location.href = "../login/login.html";
       console.log(data);
     })
     .catch((error) => {
@@ -92,6 +92,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
       inputEmail.value = data.email;
       inputEmail.disabled = true;
       inputCurrentPass.value = data.password;
+
+      if (data.profile_picture !== null){
+        userAvatar.src = data.profile_picture
+      }
+
     })
     .catch((error) => {
       console.log(error);
