@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = host + '/templates/user_profile/user_profile.html'
   });
   const btnChat = document.getElementById('send-button');
-  btnChat.addEventListener('click', function() {
+  btnChat.addEventListener('click', function(event) {
+    event.preventDefault();
     createMessage();
   });
   const btnExplore = document.getElementById('explore_servers');
@@ -96,7 +97,6 @@ function getUserServers() {
       // Inserta de manera dinámica los servidores en el DOM
       if(data.hasOwnProperty('error')){
         console.log(data.error);
-        showModalError(data.error.description);
       }
       else{
         renderSidebarServerList(data.Servers);
@@ -145,7 +145,7 @@ function getChannels(serverId){
         const channelsContainer = document.getElementById('server-channels');
         emptyingElement(channelsContainer);
         renderNoChannels();
-        renderMainMessageText('Este servidor aún no tiene canales.');
+        renderMainMessageText('Si eres el administrador, puedes crear un canal, en caso contrario deberás pedirle al creador del servidor que lo haga.');
         console.log('NO TIENE CANALES');
       }
     })
@@ -812,7 +812,7 @@ function renderServerNotFound(name) {
   const serversContainer = document.getElementById('servers');
   emptyingElement(serversContainer);
   const divElement = document.createElement('div');
-  divElement.classList.add('message')
+  divElement.classList.add('message-no-found');
   divElement.innerHTML = `
           <h2>No se ha encontrado el servidor con el nombre: "${name}"</h2>
           <h2>Prueba con otro nombre</h2>
