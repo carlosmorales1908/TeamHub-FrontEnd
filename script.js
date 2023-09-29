@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = host + '/templates/user_profile/user_profile.html'
   });
   const btnChat = document.getElementById('send-button');
-  btnChat.addEventListener('click', function() {
+  btnChat.addEventListener('click', function(event) {
+    event.preventDefault();
     createMessage();
   });
   const btnExplore = document.getElementById('explore_servers');
