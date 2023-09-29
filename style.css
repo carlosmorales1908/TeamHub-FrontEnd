@@ -140,6 +140,7 @@ img {
   display: block;
 }
 
+#new-channel:hover,
 .server-channels ul a:hover,
 .servers a:hover,
 .tools a span:hover,
