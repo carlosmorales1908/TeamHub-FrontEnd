@@ -869,9 +869,7 @@ function changeActiveElement(element, sidebar){
         li.classList.remove('active');
       }
     });
-    element.classList.add('active');
-    const newSpanElement = element.querySelector('span');
-    newSpanElement.classList.add('active');
+    const childElement = element.querySelector('span');
   }
   else if(sidebar == 'channels'){
     const channelListBar = document.getElementById('server-channels');
@@ -884,8 +882,9 @@ function changeActiveElement(element, sidebar){
       }
     });
     element.classList.add('active');
-    const newAElement = element.querySelector('a');
-    newAElement.classList.add('active');
+    const childElement = element.querySelector('a');
   }
+  element.classList.add('active');
+  childElement.classList.add('active');
   
 }
