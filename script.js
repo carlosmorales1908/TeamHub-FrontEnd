@@ -470,7 +470,6 @@ function renderSidebarServerList(servers){
   const fragTemp = document.createDocumentFragment();
       servers.forEach(server=>{
         const liElement = document.createElement("li");
-        liElement.setAttribute('data-user-rol',server.rol);
         liElement.innerHTML=`
         <a href="#" >
             <span class="material-symbols-outlined my-server crear-server" title=${server.server_name} id=${server.server_id}>
