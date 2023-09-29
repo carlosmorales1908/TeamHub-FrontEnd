@@ -156,7 +156,7 @@ function getChannels(serverId){
 }
 
 //        OBTENER LOS MENSAJES DE UN CANAL
-function getMessages(channelId){
+function getMessages(){
   const url = apiHost + '/api/channels/' + channelId;
   fetch(url, {
     method: "GET",
@@ -315,7 +315,7 @@ function createMessage(){
           } else {
             const inputEntry = document.getElementById('message-input');
             inputEntry.value = "";
-            getMessages(channelClickedId);
+            getMessages();
               // Procede con la lógica de la aplicación si la respuesta es exitosa
               console.log('Respuesta de la API:', response);
           }
@@ -344,7 +344,7 @@ function deleteMessage(messageId){
         throw new Error('La solicitud no fue exitosa');
       }
       console.log('Recurso eliminado exitosamente');
-      getMessages(channelClickedId);
+      getMessages();
     })
     .catch(error => {
       console.error('Error al eliminar el recurso:', error);
@@ -372,7 +372,7 @@ function updateMessage(message,messageId){
         throw new Error('La solicitud no fue exitosa');
       }
       console.log('Recurso actualizado exitosamente');
-      getMessages(channelClickedId);
+      getMessages();
     })
     .catch(error => {
       console.error('Error al actualizar el recurso:', error);
@@ -399,7 +399,7 @@ function getTotalMsg() {
           console.log('no hay mensajes nuevos');
         }
         else{
-          getMessages(channelClickedId);
+          getMessages();
         }
       }
       else{
@@ -523,7 +523,7 @@ function renderChannelList(channelList){
           channelClickedId = channel.channel_id;
           console.log('SE HIZO CLICK EN EL SERVER CON ID: ',channelClickedId);
           clearInterval(intervaloID);
-          getMessages(channelClickedId);
+          getMessages();
           showContainer('chat');
           console.log(aElement.id);
         })
