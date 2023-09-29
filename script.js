@@ -96,7 +96,6 @@ function getUserServers() {
       // Inserta de manera dinámica los servidores en el DOM
       if(data.hasOwnProperty('error')){
         console.log(data.error);
-        showModalError(data.error.description);
       }
       else{
         renderSidebarServerList(data.Servers);
