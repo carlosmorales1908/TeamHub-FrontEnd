@@ -472,7 +472,7 @@ function renderSidebarServerList(servers){
         const liElement = document.createElement("li");
         liElement.innerHTML=`
         <a href="#" >
-            <span class="material-symbols-outlined my-server crear-server" title=${server.server_name} id=${server.server_id}>
+            <span class="material-symbols-outlined my-server crear-server" title=${server.description} id=${server.server_id}>
                 dns
             </span>
         </a>
