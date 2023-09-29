@@ -97,6 +97,7 @@ function getUserServers() {
       // Inserta de manera dinámica los servidores en el DOM
       if(data.hasOwnProperty('error')){
         console.log(data.error);
+        renderMainMessageText('Aún no te haz unido a ningun servidor, puedes crear un servidor o explorar y unirte al que quieras.');
       }
       else{
         renderSidebarServerList(data.Servers);
@@ -145,7 +146,7 @@ function getChannels(serverId){
         const channelsContainer = document.getElementById('server-channels');
         emptyingElement(channelsContainer);
         renderNoChannels();
-        renderMainMessageText('Si eres el administrador, puedes crear un canal, en caso contrario deberás pedirle al creador del servidor que lo haga.');
+        //renderMainMessageText('Si eres el administrador, puedes crear un canal, en caso contrario deberás pedirle al creador del servidor que lo haga.');
         console.log('NO TIENE CANALES');
       }
     })
@@ -480,12 +481,15 @@ function renderSidebarServerList(servers){
         `;
         liElement.addEventListener('click', function (event) {
           changeActiveElement(liElement,'servers');
+          
           const btnAddChannel = document.getElementById('new-channel-container');
           if(server.rol != 'Admin'){
             btnAddChannel.classList.add('hidden');
+            renderMainMessageText('Unete a un canal');
           }
           else{
             btnAddChannel.classList.remove('hidden');
+            renderMainMessageText('Crea un canal o únete a alguno ');
           }
           idServerClicked = server.server_id;
           channelClickedId = null;
