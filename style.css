@@ -386,3 +386,7 @@ img {
   color: whitesmoke;
   background-color: transparent; 
 }
+
+.active{
+  color: rgb(135, 230, 200) !important;
+}

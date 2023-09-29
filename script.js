@@ -479,6 +479,7 @@ function renderSidebarServerList(servers){
         <small class="server_name">${server.server_name}</small>
         `;
         liElement.addEventListener('click', function (event) {
+          changeActiveElement(liElement,'servers');
           const btnAddChannel = document.getElementById('new-channel-container');
           if(server.rol != 'Admin'){
             btnAddChannel.classList.add('hidden');
@@ -514,6 +515,7 @@ function renderChannelList(channelList){
         fragTemp.appendChild(liElement);
         const aElement = liElement.querySelector('a');
         aElement.addEventListener('click', function (){
+          changeActiveElement(liElement,'channels');
           channelClickedId = channel.channel_id;
           console.log('SE HIZO CLICK EN EL SERVER CON ID: ',channelClickedId);
           clearInterval(intervaloID);
@@ -852,3 +854,34 @@ function showContainer(container){
   }
 }
 
+function changeActiveElement(element, sidebar){
+  if(sidebar == 'servers'){
+    const serverListBar = document.getElementById('servers-list');
+    const liElements = serverListBar.querySelectorAll('li');
+    liElements.forEach(li => {
+      if (li.classList.contains('active')) {
+        const spanElement = li.querySelector('span');
+        spanElement.classList.remove('active');
+        li.classList.remove('active');
+      }
+    });
+    element.classList.add('active');
+    const newSpanElement = element.querySelector('span');
+    newSpanElement.classList.add('active');
+  }
+  else if(sidebar == 'channels'){
+    const channelListBar = document.getElementById('server-channels');
+    const liElements = channelListBar.querySelectorAll('li');
+    liElements.forEach(li => {
+      if (li.classList.contains('active')) {
+        const aElement = li.querySelector('a');
+        aElement.classList.remove('active');
+        li.classList.remove('active');
+      }
+    });
+    element.classList.add('active');
+    const newAElement = element.querySelector('a');
+    newAElement.classList.add('active');
+  }
+  
+}
