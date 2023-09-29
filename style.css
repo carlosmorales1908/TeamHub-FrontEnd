@@ -390,3 +390,11 @@ img {
 .active{
   color: rgb(135, 230, 200) !important;
 }
+
+#servers-list li{
+  color: whitesmoke;
+}
+
+#servers-list li:hover{
+  color: rgb(135, 230, 200) ;
+}
