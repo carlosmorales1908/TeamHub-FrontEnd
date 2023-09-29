@@ -698,7 +698,7 @@ function showModalNewChannel(){
     });
 };
 
-//            MODAL PARA EDITAR O ELIMINAR UN MENSAJE
+//          MODAL PARA EDITAR O ELIMINAR UN MENSAJE
 function showModalEditMessage(message, messageId){
   const modalContainer = document.getElementById('editMessageModalContainer');
   const modalHTML = `
@@ -707,9 +707,11 @@ function showModalEditMessage(message, messageId){
           <h3>Mensaje</h3>
           <form id="form-message" action="#">
               <textarea id="message" name="message" rows="4" cols="50"></textarea>
-              <button id="btn-update-message" type="submit" class="btn-form-ns">Guardar</button>
-              <button id="btn-delete-message" type="submit" class="btn-form-ns">Eliminar</button>
-              <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
+              <div class="msg-btn-container">
+                <button id="btn-update-message" type="submit" class="btn-form-ns">Guardar</button>
+                <button id="btn-delete-message" type="submit" class="btn-form-ns">Eliminar</button>
+                <button type="submit" formmethod="dialog" class="btn-form-ns cancel-modal">Cancelar</button>
+              </div>
           </form>
       </div>
     </dialog>`;
